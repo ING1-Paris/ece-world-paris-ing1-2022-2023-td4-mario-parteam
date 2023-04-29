@@ -39,70 +39,76 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Scotch/Documents/Algo$ cours/Mario$ Parteam$ V1/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target Mario_Parteam_V1
+# Object build statements for EXECUTABLE target ece-world-paris-ing1-2022-2023-td4-mario-parteam
 
 
 #############################################
-# Order-only phony target for Mario_Parteam_V1
+# Order-only phony target for ece-world-paris-ing1-2022-2023-td4-mario-parteam
 
-build cmake_object_order_depends_target_Mario_Parteam_V1: phony || CMakeFiles/Mario_Parteam_V1.dir
+build cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam: phony || CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
-build CMakeFiles/Mario_Parteam_V1.dir/main.c.obj: C_COMPILER__Mario_Parteam_V1_Debug C$:/Users/Scotch/Documents/Algo$ cours/Mario$ Parteam$ V1/main.c || cmake_object_order_depends_target_Mario_Parteam_V1
-  DEP_FILE = CMakeFiles\Mario_Parteam_V1.dir\main.c.obj.d
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/main.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/main.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\main.c.obj.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Mario_Parteam_V1.dir
-  OBJECT_FILE_DIR = CMakeFiles\Mario_Parteam_V1.dir
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
-build CMakeFiles/Mario_Parteam_V1.dir/Menu.c.obj: C_COMPILER__Mario_Parteam_V1_Debug C$:/Users/Scotch/Documents/Algo$ cours/Mario$ Parteam$ V1/Menu.c || cmake_object_order_depends_target_Mario_Parteam_V1
-  DEP_FILE = CMakeFiles\Mario_Parteam_V1.dir\Menu.c.obj.d
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/Menu.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/Menu.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\Menu.c.obj.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Mario_Parteam_V1.dir
-  OBJECT_FILE_DIR = CMakeFiles\Mario_Parteam_V1.dir
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
-build CMakeFiles/Mario_Parteam_V1.dir/guitarhero.c.obj: C_COMPILER__Mario_Parteam_V1_Debug C$:/Users/Scotch/Documents/Algo$ cours/Mario$ Parteam$ V1/guitarhero.c || cmake_object_order_depends_target_Mario_Parteam_V1
-  DEP_FILE = CMakeFiles\Mario_Parteam_V1.dir\guitarhero.c.obj.d
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/guitarhero.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/guitarhero.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\guitarhero.c.obj.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Mario_Parteam_V1.dir
-  OBJECT_FILE_DIR = CMakeFiles\Mario_Parteam_V1.dir
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
-build CMakeFiles/Mario_Parteam_V1.dir/bomberman.c.obj: C_COMPILER__Mario_Parteam_V1_Debug C$:/Users/Scotch/Documents/Algo$ cours/Mario$ Parteam$ V1/bomberman.c || cmake_object_order_depends_target_Mario_Parteam_V1
-  DEP_FILE = CMakeFiles\Mario_Parteam_V1.dir\bomberman.c.obj.d
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/bomberman.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/bomberman.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\bomberman.c.obj.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Mario_Parteam_V1.dir
-  OBJECT_FILE_DIR = CMakeFiles\Mario_Parteam_V1.dir
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
-build CMakeFiles/Mario_Parteam_V1.dir/supersimon.c.obj: C_COMPILER__Mario_Parteam_V1_Debug C$:/Users/Scotch/Documents/Algo$ cours/Mario$ Parteam$ V1/supersimon.c || cmake_object_order_depends_target_Mario_Parteam_V1
-  DEP_FILE = CMakeFiles\Mario_Parteam_V1.dir\supersimon.c.obj.d
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/supersimon.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/supersimon.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\supersimon.c.obj.d
   FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Mario_Parteam_V1.dir
-  OBJECT_FILE_DIR = CMakeFiles\Mario_Parteam_V1.dir
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/map.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/map.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\map.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Mario_Parteam_V1
+# Link build statements for EXECUTABLE target ece-world-paris-ing1-2022-2023-td4-mario-parteam
 
 
 #############################################
-# Link the executable Mario_Parteam_V1.exe
+# Link the executable ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe
 
-build Mario_Parteam_V1.exe: C_EXECUTABLE_LINKER__Mario_Parteam_V1_Debug CMakeFiles/Mario_Parteam_V1.dir/main.c.obj CMakeFiles/Mario_Parteam_V1.dir/Menu.c.obj CMakeFiles/Mario_Parteam_V1.dir/guitarhero.c.obj CMakeFiles/Mario_Parteam_V1.dir/bomberman.c.obj CMakeFiles/Mario_Parteam_V1.dir/supersimon.c.obj
+build ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe: C_EXECUTABLE_LINKER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/main.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/Menu.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/guitarhero.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/bomberman.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/supersimon.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/map.c.obj
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\Mario_Parteam_V1.dir
+  LINK_LIBRARIES = -lmingw32  -lalleg44  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = Mario_Parteam_V1.exe
-  TARGET_IMPLIB = libMario_Parteam_V1.dll.a
-  TARGET_PDB = Mario_Parteam_V1.exe.dbg
+  TARGET_FILE = ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe
+  TARGET_IMPLIB = libece-world-paris-ing1-2022-2023-td4-mario-parteam.dll.a
+  TARGET_PDB = ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\Scotch\Documents\Algo cours\Mario Parteam V1\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D "C:\Users\Scotch\Documents\Algo cours\ece-world-paris-ing1-2022-2023-td4-mario-parteam\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -113,7 +119,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\Scotch\Documents\Algo cours\Mario Parteam V1\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\Scotch\Documents\Algo cours\Mario Parteam V1" -B"C:\Users\Scotch\Documents\Algo cours\Mario Parteam V1\cmake-build-debug""
+  COMMAND = cmd.exe /C "cd /D "C:\Users\Scotch\Documents\Algo cours\ece-world-paris-ing1-2022-2023-td4-mario-parteam\cmake-build-debug" && "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\Scotch\Documents\Algo cours\ece-world-paris-ing1-2022-2023-td4-mario-parteam" -B"C:\Users\Scotch\Documents\Algo cours\ece-world-paris-ing1-2022-2023-td4-mario-parteam\cmake-build-debug""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -123,7 +129,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build Mario_Parteam_V1: phony Mario_Parteam_V1.exe
+build ece-world-paris-ing1-2022-2023-td4-mario-parteam: phony ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe
 
 # =============================================================================
 # Folder targets.
@@ -131,9 +137,9 @@ build Mario_Parteam_V1: phony Mario_Parteam_V1.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Scotch/Documents/Algo cours/Mario Parteam V1/cmake-build-debug
+# Folder: C:/Users/Scotch/Documents/Algo cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/cmake-build-debug
 
-build all: phony Mario_Parteam_V1.exe
+build all: phony ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe
 
 # =============================================================================
 # Built-in targets

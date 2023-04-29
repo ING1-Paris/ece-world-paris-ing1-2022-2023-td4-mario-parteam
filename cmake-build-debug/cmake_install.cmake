@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Scotch/Documents/Algo cours/Mario Parteam V1
+# Install script for directory: C:/Users/Scotch/Documents/Algo cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Scotch/Documents/Algo cours/Mario Parteam V1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Scotch/Documents/Algo cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
