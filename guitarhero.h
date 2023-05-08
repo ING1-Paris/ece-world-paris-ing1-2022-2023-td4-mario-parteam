@@ -25,15 +25,19 @@ typedef struct boutons{
 
 typedef struct score{
     long int score;
+    int xscore, yscore;
     //tab de score ?
-    short int combo;
+    float combo;
+    int xcombo,ycombo;
 }t_score;
 
 void initBoutons(t_boutons *boutons);
+void initStage(BITMAP *stage,int *xstage,int *ystage);
+void initScore(t_score *score);
 void menuGh();
 void animationBoutons(t_boutons *boutons);
 void detectScore(t_score *score, t_boutons *boutons,BITMAP *page); // appeler animationBoutons dans cette fonction
-void guitareHero(t_score *score, t_boutons *boutons); //fonction final du jeu, avec BITMAP *stage, menu.... ect
+void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page, int *xstage, int *ystage); //fonction final du jeu, avec BITMAP *stage, menu.... ect
 
 
 #endif //MARIO_PARTEAM_V1_GUITARHERO_H

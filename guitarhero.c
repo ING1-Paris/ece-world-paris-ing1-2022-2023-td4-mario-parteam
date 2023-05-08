@@ -20,9 +20,27 @@ void initBoutons(t_boutons *boutons){
     //à changer quand les bitmap seront faites
 }
 
+void initStage(BITMAP *stage,int *xstage,int *ystage){
+    stage= load_bitmap("test",NULL);
+    xstage=0;
+    ystage=0;
+}
+
+void initScore(t_score *score){
+    score->score=0;
+    score->xscore=0;    score->yscore=0;
+
+    score->combo=0;
+    score->xcombo=0;    score->ycombo=0;
+}
+
+
+
 void detectScore(t_score *score, t_boutons *boutons,BITMAP *page){
     int press;
+    float multiplier;
     int ybuffer[5];
+    multiplier=0;
     press=0;
     for(int i=0;i<5;i++){
         ybuffer[i]=boutons->yboutons[i];
@@ -30,18 +48,45 @@ void detectScore(t_score *score, t_boutons *boutons,BITMAP *page){
             ybuffer[i]+=j;
             if(keypressed()==boutons->clavier[i] && getpixel(page,boutons->xboutons[i],ybuffer[i])==boutons->color[i]){
                 press=PARFAIT;
+                multiplier=0.4;
             }else
                 for(int k=-ECARTMOYEN/2;k<ECARTMOYEN;k++){
                     ybuffer[i]+=k;
                     if(keypressed()==boutons->clavier[i] && getpixel(page,boutons->xboutons[i],ybuffer[i])==boutons->color[i]){
                         press=MOYEN;
-                    }else
+                        multiplier=0.2;
+                    }else{
                         press=RATE;
+                        score->combo=0;
+                    }
                 }
         }
     }
+    score->combo+=multiplier;
+    if(score->combo>8){
+        score->combo=8;
+    }
     score->score+=press;
 }
+
+
+void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int *xstage,int *ystage){ //rajouter une condition quand un autre stage sera créé
+    int fin;
+    initBoutons(boutons);
+    initStage(stage,xstage,ystage);
+    initScore(score);
+
+    while(!key[KEY_ESC]){
+        //Rajouter un 3,2,1;
+
+        ystage--;
+        blit(stage,page,*xstage,*ystage,0,0,SCREEN_W,SCREEN_H);
+        detectScore(score,boutons,page);
+    }
+
+
+}
+
 
 
 
