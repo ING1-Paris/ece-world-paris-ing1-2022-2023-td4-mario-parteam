@@ -6,5 +6,6 @@
 #define MARIO_PARTEAM_V1_MAIN_H
 #include "generalfunctions.h"
 #include "map.h"
+#include "guitarhero.h"
 
 #endif //MARIO_PARTEAM_V1_MAIN_H

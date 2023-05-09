@@ -1,7 +1,7 @@
 #include "main.h"
 
 int main() {
-    BITMAP *map;
+    /*BITMAP *map;
     BITMAP *page;
     t_perso *perso;
 
@@ -101,8 +101,46 @@ int main() {
     }
     free(perso);
     destroy_bitmap(map);
-    destroy_bitmap(page);
+    destroy_bitmap(page);*/
 
+    allegro_init();
+    install_keyboard();
+
+
+    set_color_depth(desktop_color_depth());
+    if (set_gfx_mode(GFX_AUTODETECT_FULLSCREEN,1920,1080,0,0)!=0)
+    {
+        allegro_message("prb gfx mode");
+        allegro_exit();
+        exit(EXIT_FAILURE);
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// GUITARE HERO
+
+//variables à allouer dynamiquement
+
+    t_score *score;
+    t_boutons *boutons;
+    BITMAP *stage;
+    BITMAP *page;
+    bool touchePresse[5] = { false };
+
+
+    page= create_bitmap(SCREEN_W,SCREEN_H);
+    clear_bitmap(page);
+
+    stage = load_bitmap_check("images/Stage_Gh.bmp");
+
+    score=(t_score *) malloc(sizeof (t_score));
+    boutons=(t_boutons *) malloc(sizeof (t_boutons));
+
+
+    initBoutons(boutons);
+    initScore(score);
+
+    guitareHero(score,boutons,stage,page,YSTAGE,touchePresse);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return 0;
 }

@@ -8,5 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
+
 
 #endif //MARIO_PARTEAM_V1_GENERALFUNCTIONS_H
