@@ -119,6 +119,7 @@ int main() {
 
 //variables à allouer dynamiquement
 
+
     t_score *score;
     t_boutons *boutons;
     BITMAP *stage;
@@ -129,7 +130,7 @@ int main() {
     page= create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(page);
 
-    stage = load_bitmap_check("images/Stage_Gh.bmp");
+    stage = load_bitmap_check("images/Stage_Gh_Kirby.bmp");
 
     score=(t_score *) malloc(sizeof (t_score));
     boutons=(t_boutons *) malloc(sizeof (t_boutons));

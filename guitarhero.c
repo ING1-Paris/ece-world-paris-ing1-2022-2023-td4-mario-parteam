@@ -16,12 +16,18 @@ void initBoutons(t_boutons *boutons){
     boutons->clavier[1]=key[KEY_W];
     boutons->clavier[2]=key[KEY_E];
     boutons->clavier[3]=key[KEY_R];
-    boutons->clavier[4]=key[KEY_T];
+    boutons->clavier[4]=key[KEY_SPACE];
 
     //déclarer la pos des boutons
-    for(int i=0;i<5;i++){
-        boutons->xboutons[i]=250+60*i;//RECALLER
-        boutons->yboutons[i]=800;
+    boutons->xboutons[0]=XSTAGE+83;
+    boutons->xboutons[1]=XSTAGE+259;
+    boutons->xboutons[2]=XSTAGE+433;
+    boutons->xboutons[3]=XSTAGE+593;
+    boutons->xboutons[4]=XSTAGE+767;
+
+
+    for(int i=0;i<5;i++) {
+        boutons->yboutons[i] = 700;
     }
 
 
@@ -32,8 +38,8 @@ void initBoutons(t_boutons *boutons){
     boutons->color[4]=makecol(252,216,168); //ORANGE
     //à changer quand les bitmap seront faites
 
-    boutons->txb=boutons->tyb=24;
-    boutons->txb=boutons->tyb=24;
+    boutons->txb=boutons->tyb=126;
+    boutons->txb=boutons->tyb=126;
 }
 
 
@@ -135,7 +141,7 @@ void detectScore(t_score *score, t_boutons *boutons,BITMAP *page, bool touchePre
         if(touchePress[i]){
             if(!toucheIsPress[i]){
                 for(int j=0;j<MAXX;j++){
-                    if(getpixel(page,boutons->xboutons[i],boutons->yboutons[i]+j)==boutons->color[i]){
+                    if(getpixel(page,boutons->xboutons[i]+38,boutons->yboutons[i]+j)==boutons->color[i]){
                         if(j<=ECARTPARFAIT){
                             score->combo+=2;
                             if(score->combo>8)
@@ -165,9 +171,14 @@ void detectScore(t_score *score, t_boutons *boutons,BITMAP *page, bool touchePre
 
 void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5]){ //rajouter une condition quand un autre stage sera créé
     int toucheIsPress[5] = {0};
+    install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,NULL);
+    SAMPLE *Kirby= load_sample("Music/Gourmet Race - Kirby： Super Star.wav");
+
     while(!key[KEY_ESC]){
+        if(getpixel(page,XSTAGE,550)==makecol(255,255,255))
+            play_sample(Kirby,255,0,1000,1);
         //Rajouter un 3,2,1;
-        ystage--;
+        ystage-=10;
         blit(stage,page,-XSTAGE,ystage,0,0,SCREEN_W,SCREEN_H);
         touchePress[0] = key[KEY_Q];
         touchePress[1] = key[KEY_W];
@@ -178,12 +189,15 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
 
         textprintf_ex(screen,font,score->xscore,score->yscore,score->color,-1,"score : %ld",score->score);
         textprintf_ex(screen,font,score->xcombo,score->ycombo,score->color,-1,"combo : %d",score->combo);
-        //animationBoutons(boutons,page);
+        animationBoutons(boutons,page);
 
 
 
         blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
     }
+    destroy_sample(Kirby);
+    destroy_bitmap(page);
+    destroy_bitmap(stage);
 }
 
 

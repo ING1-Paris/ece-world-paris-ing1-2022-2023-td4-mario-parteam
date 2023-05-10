@@ -13,7 +13,7 @@
 #define ECARTMOYEN 50
 #define MAXX 100
 #define XSTAGE 205
-#define YSTAGE 2000
+#define YSTAGE 30000
 typedef struct boutons{
     BITMAP *vert[ANIMATION];    //0     a
     BITMAP *rouge[ANIMATION];   //1     z
