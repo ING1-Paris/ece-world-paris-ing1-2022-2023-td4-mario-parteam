@@ -5,14 +5,11 @@
 #ifndef MARIO_PARTEAM_V1_GUITARHERO_H
 #define MARIO_PARTEAM_V1_GUITARHERO_H
 #include "generalfunctions.h"
-#define PARFAIT 100
-#define MOYEN 50
-#define RATE 0
 #define ANIMATION 2
 #define ECARTPARFAIT 20
 #define ECARTMOYEN 50
 #define MAXX 100
-#define XSTAGE 205
+#define XSTAGE 0
 #define YSTAGE 30000
 typedef struct boutons{
     BITMAP *vert[ANIMATION];    //0     a
@@ -42,7 +39,9 @@ void initScore(t_score *score);
 void menuGh();
 void animationBoutons(t_boutons *boutons, BITMAP *page);
 void detectScore(t_score *score, t_boutons *boutons,BITMAP *page, bool touchePress[5], int toucheIsPress[5]); // appeler animationBoutons dans cette fonction
-void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page, int ystage, bool touchePress[5]); //fonction final du jeu, avec BITMAP *stage, menu.... ect
+void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5],double *volume); //fonction du jeu
+void Gh();
+int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2, int *l,double *volume);
 
 
 #endif //MARIO_PARTEAM_V1_GUITARHERO_H

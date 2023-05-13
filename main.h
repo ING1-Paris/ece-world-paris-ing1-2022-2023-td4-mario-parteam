@@ -8,4 +8,6 @@
 #include "map.h"
 #include "guitarhero.h"
 
+void allegroinit();
+
 #endif //MARIO_PARTEAM_V1_MAIN_H
