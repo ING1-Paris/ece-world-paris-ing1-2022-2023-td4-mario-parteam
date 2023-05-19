@@ -2,7 +2,8 @@
 
 int main() {
     allegroinit();
-    map();
+    //map();
+    leback();
     //Gh();
     return 0;
 }
