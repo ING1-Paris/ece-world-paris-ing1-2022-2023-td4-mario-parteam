@@ -3,6 +3,18 @@
 //
 #include "bomberman.h"
 
+void init_bombe(t_bombe bombe[]){
+    for(int i=0;i<4;i++){
+        bombe[i].explosion=0;
+        for(int z=0;z<10;z++){
+            bombe[i].x_plus_feu[z]=0;
+            bombe[i].x_minus_feu[z]=0;
+            bombe[i].y_plus_feu[z]=0;
+            bombe[i].y_minus_feu[z]=0;
+        }
+    }
+}
+
 void init_perso(t_joueur perso[]){
     for(int i=0;i<2;i++){
         perso[i].feu=1;
@@ -177,12 +189,233 @@ void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePre
     }
 }
 
-void explosion(t_joueur perso[],int matrice[X][Y],int *restebombe){
+void explosion(t_joueur perso[],t_bombe bombe[],int matrice[X][Y],int *nbbombe){
+
+    if(*nbbombe < perso[0].nb_bombes && key[KEY_SPACE]){
+        bombe[*nbbombe].x=perso[0].x;
+        bombe[*nbbombe].y=perso[0].y;
+        bombe[*nbbombe].creation_time= time(NULL);
+        bombe[*nbbombe].explosion=0;
+        *nbbombe+=1;
+    }
+
+    time_t atm= time(NULL);
+    int nbbombee = *nbbombe;
+
+
+
+    // -> ON PLACE LE FEU SUR LES CASE VIDE JUSQU'AU MOMENT OU ON TROUVE UNE CASE AVEC BLOCK OU MUR
+    // -> ON DETRUIT LE BLOCK OU ON S'ARRETE AU MUR
+    // -> ON ENREGISTRE LA POSITION DE LA FLAMME POUR PLUS TARD REMETTRE CETTE POSITION A 0
+    for(int i=0;i<nbbombee;i++){
+        if(atm - bombe[i].creation_time >=2 && bombe[i].explosion!=1){
+            bombe[i].explosion=1;
+
+            //code d'explosion de bombe
+            x_plus(bombe,matrice,perso,i);
+            x_minus(bombe,matrice,perso,i);
+            y_plus(bombe,matrice,perso,i);
+            y_minus(bombe,matrice,perso,i);
+        }
+        if(atm - bombe[i].creation_time >= 4 && bombe[i].explosion==1){
+            for(int z=0;z<10;z++){
+                if(matrice[bombe[i].x_plus_feu[z]][bombe[i].y]==4){
+                    matrice[bombe[i].x_plus_feu[z]][bombe[i].y]=0;
+                }
+                if(matrice[bombe[i].x_minus_feu[z]][bombe[i].y]==4){
+                    matrice[bombe[i].x_minus_feu[z]][bombe[i].y]=0;
+                }
+                if(matrice[bombe[i].x][bombe[i].y_plus_feu[z]]==4){
+                    matrice[bombe[i].x][bombe[i].y_plus_feu[z]]=0;
+                }
+                if(matrice[bombe[i].x][bombe[i].y_minus_feu[z]]==4){
+                    matrice[bombe[i].x][bombe[i].y_minus_feu[z]]=0;
+                }
+            }
+            *nbbombe-=1;
+        }
+    }
+    /*int i=0;
+    time_t begin[i];
+    time_t end[i];
+    int tabx[10];
+    int taby[10];
     if(key[KEY_SPACE] && *restebombe < perso[0].nb_bombes){
         matrice[perso[0].x][perso[0].y]=9;
         *restebombe+=1;
+        tabx[i]=perso[0].x;
+        taby[i]=perso[0].y;
+        begin[i]= time(NULL);
+        i++;
+    }
+    end[i]= time(NULL);
+    if(end[i]-begin[i]>=2 && end[i]-begin[i]){
+        ///FEU AXE X +
+        for(int s=0;s<perso[0].feu;s++){
+            if(matrice[tabx[i]+s][taby[i]]!=1 && matrice[tabx[i]+s][taby[i]]!=2 && matrice[tabx[i]+s][taby[i]]!=7 && matrice[tabx[i]+s][taby[i]]!=8 && matrice[tabx[i]+s][taby[i]]!=9 && matrice[tabx[i]+s][taby[i]]!=10){
+                matrice[tabx[i]+s][taby[i]]=4;
+            }else if(matrice[tabx[i]+s][taby[i]]==1){
+                matrice[tabx[i]+s][taby[i]]=1;
+                break;
+            }else if(matrice[tabx[i]+s][taby[i]]==2){
+                matrice[tabx[i]+s][taby[i]]=0;
+                break;
+            }else if(matrice[tabx[i]+s][taby[i]]==7 || matrice[tabx[i]+s][taby[i]]==9){
+                perso[0].vie=0;
+            }else if(matrice[tabx[i]+s][taby[i]]==8 || matrice[tabx[i]+s][taby[i]]==10){
+                perso[1].vie=0;
+            }
+        }
+        ///FEU AXE X-
+        for(int s=0;s>-perso[0].feu;s--){
+            if(matrice[tabx[i]+s][taby[i]]!=1 && matrice[tabx[i]+s][taby[i]]!=2 && matrice[tabx[i]+s][taby[i]]!=7 && matrice[tabx[i]+s][taby[i]]!=8 && matrice[tabx[i]+s][taby[i]]!=9 && matrice[tabx[i]+s][taby[i]]!=10){
+                matrice[tabx[i]+s][taby[i]]=4;
+            }else if(matrice[tabx[i]+s][taby[i]]==1){
+                matrice[tabx[i]+s][taby[i]]=1;
+                break;
+            }else if(matrice[tabx[i]+s][taby[i]]==2){
+                matrice[tabx[i]+s][taby[i]]=0;
+                break;
+            }else if(matrice[tabx[i]+s][taby[i]]==7 || matrice[tabx[i]+s][taby[i]]==9){
+                perso[0].vie=0;
+            }else if(matrice[tabx[i]+s][taby[i]]==8 || matrice[tabx[i]+s][taby[i]]==10){
+                perso[1].vie=0;
+            }
+        }
+        ///FEU AXE Y+
+        for(int s=0;s<perso[0].feu;s++){
+            if(matrice[tabx[i]][taby[i]+s]!=1 && matrice[tabx[i]][taby[i]+s]!=2 && matrice[tabx[i]][taby[i]+s]!=7 && matrice[tabx[i]][taby[i]+s]!=8 && matrice[tabx[i]][taby[i]+s]!=9 && matrice[tabx[i]][taby[i]+s]!=10){
+                matrice[tabx[i]][taby[i]+s]=4;
+            }else if(matrice[tabx[i]][taby[i]+s]==1){
+                matrice[tabx[i]][taby[i]+s]=1;
+                break;
+            }else if(matrice[tabx[i]][taby[i]+s]==2){
+                matrice[tabx[i]][taby[i]+s]=0;
+                break;
+            }else if(matrice[tabx[i]][taby[i]+s]==7 || matrice[tabx[i]][taby[i]+s]==9){
+                perso[0].vie=0;
+            }else if(matrice[tabx[i]][taby[i]+s]==8 || matrice[tabx[i]][taby[i]+s]==10){
+                perso[1].vie=0;
+            }
+        }
+        ///FEU AXE Y-
+        for(int s=0;s>-perso[0].feu;s--){
+            if(matrice[tabx[i]][taby[i]+s]!=1 && matrice[tabx[i]][taby[i]+s]!=2 && matrice[tabx[i]][taby[i]+s]!=7 && matrice[tabx[i]][taby[i]+s]!=8 && matrice[tabx[i]][taby[i]+s]!=9 && matrice[tabx[i]][taby[i]+s]!=10){
+                matrice[tabx[i]][taby[i]+s]=4;
+            }else if(matrice[tabx[i]][taby[i]+s]==1){
+                matrice[tabx[i]][taby[i]+s]=1;
+                break;
+            }else if(matrice[tabx[i]][taby[i]+s]==2){
+                matrice[tabx[i]][taby[i]+s]=0;
+                break;
+            }else if(matrice[tabx[i]][taby[i]+s]==7 || matrice[tabx[i]][taby[i]+s]==9){
+                perso[0].vie=0;
+            }else if(matrice[tabx[i]][taby[i]+s]==8 || matrice[tabx[i]][taby[i]+s]==10){
+                perso[1].vie=0;
+            }
+        }
+    }*/
+
+}
+
+void x_plus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i){
+    ///AXE X+
+    for(int j=0;j<perso[0].feu;j++){
+        if(matrice[bombe[i].x+j][bombe[i].y]!=1 && matrice[bombe[i].x+j][bombe[i].y]!=2){
+            matrice[bombe[i].x+j][bombe[i].y]=4;
+            if(bombe[i].x+j==perso[0].x && bombe[i].y==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x+j==perso[1].x && bombe[i].y==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            bombe[i].x_plus_feu[j]=bombe[i].x+j;
+            bombe[i].y_plus_feu[j]=bombe[i].y;
+
+        }else if(matrice[bombe[i].x+j][bombe[i].y]==2){
+            matrice[bombe[i].x+j][bombe[i].y]=0;
+            break;
+        }else if(matrice[bombe[i].x+j][bombe[i].y]==1){
+            break;
+        }
     }
 }
+void x_minus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i){
+    ///AXE X-
+    for(int j=0;j<perso[0].feu;j++){
+        if(matrice[bombe[i].x-j][bombe[i].y]!=1 && matrice[bombe[i].x-j][bombe[i].y]!=2){
+            matrice[bombe[i].x-j][bombe[i].y]=4;
+            if(bombe[i].x-j==perso[0].x && bombe[i].y==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x-j==perso[1].x && bombe[i].y==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            bombe[i].x_plus_feu[j]=bombe[i].x-j;
+            bombe[i].y_plus_feu[j]=bombe[i].y;
+        }else if(matrice[bombe[i].x-j][bombe[i].y]==2){
+            matrice[bombe[i].x-j][bombe[i].y]=0;
+            break;
+        }else if(matrice[bombe[i].x-j][bombe[i].y]==1){
+            break;
+        }
+    }
+}
+void y_plus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i){
+
+    ///AXE Y+
+    for(int j=0;j<perso[0].feu;j++){
+        if(matrice[bombe[i].x][bombe[i].y+j]!=1 && matrice[bombe[i].x][bombe[i].y+j]!=2){
+            matrice[bombe[i].x][bombe[i].y+j]=4;
+            if(bombe[i].x==perso[0].x && bombe[i].y+j==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x==perso[1].x && bombe[i].y+j==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+
+            bombe[i].x_plus_feu[j]=bombe[i].x;
+            bombe[i].y_plus_feu[j]=bombe[i].y+j;
+        }else if(matrice[bombe[i].x][bombe[i].y+j]==2){
+            matrice[bombe[i].x][bombe[i].y+j]=0;
+            break;
+        }else if(matrice[bombe[i].x][bombe[i].y+j]==1){
+            break;
+        }
+    }
+}
+void y_minus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i){
+
+    ///AXE Y-
+    for(int j=0;j<perso[0].feu;j++){
+        if(matrice[bombe[i].x][bombe[i].y-j]!=1 && matrice[bombe[i].x][bombe[i].y-j]!=2){
+            matrice[bombe[i].x][bombe[i].y-j]=4;
+            if(bombe[i].x==perso[0].x && bombe[i].y-j==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x==perso[1].x && bombe[i].y-j==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+
+            bombe[i].x_plus_feu[j]=bombe[i].x;
+            bombe[i].y_plus_feu[j]=bombe[i].y-j;
+        }else if(matrice[bombe[i].x][bombe[i].y-j]==2){
+            matrice[bombe[i].x][bombe[i].y-j]=0;
+            break;
+        }else if(matrice[bombe[i].x][bombe[i].y-j]==1){
+            break;
+        }
+    }
+}
+
 
 void affichage(int matrice[X][Y],t_joueur perso[]/*,BITMAP *objects[NBOBJECTS]*/,BITMAP *page){
     clear(page);
@@ -198,6 +431,7 @@ void affichage(int matrice[X][Y],t_joueur perso[]/*,BITMAP *objects[NBOBJECTS]*/
 void Bomberman(){
     int matrice[X][Y];
     t_joueur perso[2];
+    t_bombe bombe[4];
     //BITMAP *objects[ANMATION];
     BITMAP *page;
     int animation=0;
@@ -212,6 +446,7 @@ void Bomberman(){
     clear_bitmap(page);
     init_matrice(matrice);
     init_perso(perso);
+    init_bombe(bombe);
     affichage(matrice,perso/*,objects*/,page);
 
 
