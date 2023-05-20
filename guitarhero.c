@@ -132,7 +132,7 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
     int vol;
     install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,NULL);
     SAMPLE *Kirby= load_sample("Music/Gourmet Race - Kirby： Super Star.wav");
-    vol=255*(1/(*volume));
+    //vol=255*(1/(*volume));
     BITMAP *buffer;
     BITMAP *background;
     BITMAP *KirbySing;
@@ -144,8 +144,8 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
         clear(page);
         draw_sprite(page,KirbySing,1490,820);
         blit(background,page,0,0,0,0,SCREEN_W,SCREEN_H);
-        if(getpixel(page,XSTAGE,550)==makecol(255,255,255))
-            play_sample(Kirby,vol,0,1000,1);
+        if(getpixel(screen,XSTAGE+10,550)==makecol(255,255,255))
+            play_sample(Kirby,255,0,1000,1);
         //Rajouter un 3,2,1;
         ystage-=10;
 
@@ -251,7 +251,6 @@ void Gh(){
     BITMAP *stage;
     BITMAP *page;
     BITMAP *fond;
-    BITMAP *background;
     bool touchePresse[5] = {false};
     double volume;
 
@@ -283,6 +282,11 @@ void Gh(){
         if(Menu(page,fond,&x1,&x2,&y1,&y2,&l,&volume)==1)
             guitareHero(score,boutons,stage,page,YSTAGE,touchePresse,&volume);
     }
+    free(score);
+    free(boutons);
+    destroy_bitmap(stage);
+    destroy_bitmap(fond);
+    destroy_bitmap(page);
 
 }
 

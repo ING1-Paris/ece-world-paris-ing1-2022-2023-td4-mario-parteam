@@ -1,0 +1,8 @@
+//
+// Created by MAJ on 21/05/2023.
+//
+
+#ifndef MARIO_PARTEAM_V1_TICKETS_H
+#define MARIO_PARTEAM_V1_TICKETS_H
+
+#endif //MARIO_PARTEAM_V1_TICKETS_H

@@ -3,8 +3,8 @@
 int main() {
     allegroinit();
     //map();
-    leback();
-    //Gh();
+    //Gh();//FINIR LA MAP + CONDITION DE VICTOIRE
+    Bomberman();
     return 0;
 }
 END_OF_MAIN()
@@ -18,5 +18,6 @@ void allegroinit(){
         allegro_message("prb gfx mode");
         allegro_exit();
         exit(EXIT_FAILURE);
+
     }
 }
