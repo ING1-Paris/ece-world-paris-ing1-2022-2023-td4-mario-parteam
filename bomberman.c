@@ -3,9 +3,26 @@
 //
 #include "bomberman.h"
 
+void init_bombe(t_bombe bombe[]){
+    for(int i=0;i<10;i++){
+        bombe[i].explosion=0;
+        for(int z=0;z<10;z++){
+            bombe[i].x_plus_feu[z]=0;
+            bombe[i].x_minus_feu[z]=0;
+            bombe[i].y_plus_feu[z]=0;
+            bombe[i].y_minus_feu[z]=0;
+        }
+        for(int x=0;x<X;x++){
+            for(int y=0;y<Y;y++){
+                    bombe[i].matrice[x][y]=0;
+                }
+            }
+        }
+    }
+
 void init_perso(t_joueur perso[]){
     for(int i=0;i<2;i++){
-        perso[i].feu=1;
+        perso[i].feu=2;
         perso[i].nb_bombes=1;
         perso[i].vie=1;
     }
@@ -38,17 +55,17 @@ void init_matrice(int matrice[X][Y]){
 
         }
     }
-    matrice[1][1]=7;    matrice[2][1]=0;    matrice[1][2]=0;
+    matrice[1][1]=0;    matrice[2][1]=0;    matrice[1][2]=0;
 
     matrice[1][8]=0;    matrice[2][9]=0;    matrice[1][9]=0;
 
     matrice[10][1]=0;    matrice[11][1]=0;    matrice[11][2]=0;
 
-    matrice[11][8]=0;    matrice[11][9]=8;    matrice[10][9]=0;
+    matrice[11][8]=0;    matrice[11][9]=0;    matrice[10][9]=0;
 }
 
 
-void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePressed1[5], bool touchePressed2[5],int toucheIsPress1[5],int toucheIsPress2[5],BITMAP *page){
+void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePressed1[5], bool touchePressed2[5],int toucheIsPress1[5],int toucheIsPress2[5],BITMAP *page,BITMAP *Object[NBOBJECTS],BITMAP *stage){
     int x1=perso[0].x;
     int y1=perso[0].y;
 
@@ -74,40 +91,40 @@ void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePre
                         x1--;
                     if(i==3)
                         x1++;
-                    if(matrice[x1][y1]!=1 && matrice[x1][y1]!=2 && matrice[x1][y1]!=3 && matrice[x1][y1]!=8){
+                    if(matrice[x1][y1]!=1 && matrice[x1][y1]!=2 && matrice[x1][y1]!=3 && (x1!=perso[1].x && y1!=perso[1].y)){
                         if(matrice[x1][y1]==0){
-                            matrice[perso[0].x][perso[0].y]=0;
-                            matrice[x1][y1]=7;
+                            //matrice[perso[0].x][perso[0].y]=0;
+                            //matrice[x1][y1]=7;
                             perso[0].y=y1;
                             perso[0].x=x1;
                             toucheIsPress1[i]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }else if(matrice[x1][y1]==4){
-                            matrice[perso[0].x][perso[0].y]=0;
-                            matrice[x1][y1]=7;
+                            //matrice[perso[0].x][perso[0].y]=0;
+                            //matrice[x1][y1]=7;
                             perso[0].y=y1;
                             perso[0].x=x1;
                             perso[0].vie=0;
                             //*animation=0; //ANIMATION DE MORT
                             //FIN?
                             toucheIsPress1[i]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }else if(matrice[x1][y1]==5){
-                            matrice[perso[0].x][perso[0].y]=0;
-                            matrice[x1][y1]=7;
+                            //matrice[perso[0].x][perso[0].y]=0;
+                            //matrice[x1][y1]=7;
                             perso[0].y=y1;
                             perso[0].x=x1;
                             perso[0].feu+=1;
                             toucheIsPress1[i]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }else if(matrice[x1][y1]==6){
-                            matrice[perso[0].x][perso[0].y]=0;
-                            matrice[x1][y1]=7;
+                            //matrice[perso[0].x][perso[0].y]=0;
+                            //matrice[x1][y1]=7;
                             perso[0].y=y1;
                             perso[0].x=x1;
                             perso[0].nb_bombes+=1;
                             toucheIsPress1[i]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
 
                         }
                     }
@@ -115,12 +132,11 @@ void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePre
             }else
                 toucheIsPress1[i]=0;
         }
-    }
+    } //DEPLACEMENT J1
 
     if(perso[1].vie!=0){
         for(int j=0;j<5;j++){
             if(touchePressed2[j]){
-                textprintf_ex(screen,font,600,400, makecol(255,255,255),-1,"x2 : %d",x2);
 
                 if(!toucheIsPress2[j]){
                     if(j==0)
@@ -131,90 +147,274 @@ void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePre
                         x2--;
                     if(j==3)
                         x2++;
-                    textprintf_ex(screen,font,600,400, makecol(255,255,255),-1,"x2 : %d",x2);
-                    textprintf_ex(screen,font,600,420, makecol(255,255,255),-1,"y2 : %d",y2);
-
-                    if(matrice[x2][y2]!=1 && matrice[x2][y2]!=2 && matrice[x2][y2]!=3 && matrice[x2][y2]!=8){
+                    if(matrice[x2][y2]!=1 && matrice[x2][y2]!=2 && matrice[x2][y2]!=3  && (x2!=perso[0].x && y2!=perso[0].y)){
                         if(matrice[x2][y2]==0){
-                            matrice[perso[1].x][perso[1].y]=0;
-                            matrice[x2][y2]=8;
+                            //matrice[perso[1].x][perso[1].y]=0;
+                            //matrice[x2][y2]=8;
                             perso[1].y=y2;
                             perso[1].x=x2;
                             toucheIsPress2[j]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }else if(matrice[x2][y2]==4){
-                            matrice[perso[1].x][perso[1].y]=0;
-                            matrice[x2][y2]=8;
+                            //matrice[perso[1].x][perso[1].y]=0;
+                            //matrice[x2][y2]=8;
                             perso[1].y=y2;
                             perso[1].x=x2;
                             perso[1].vie=0;
                             //*animation=0; //ANIMATION DE MORT
                             //FIN?
                             toucheIsPress2[j]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }else if(matrice[x2][y2]==5){
-                            matrice[perso[1].x][perso[1].y]=0;
-                            matrice[x2][y2]=8;
+                            //matrice[perso[1].x][perso[1].y]=0;
+                            //matrice[x2][y2]=8;
                             perso[1].y=y2;
                             perso[1].x=x2;
                             perso[1].feu+=1;
                             toucheIsPress2[j]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }else if(matrice[x2][y2]==6){
-                            matrice[perso[1].x][perso[1].y]=0;
-                            matrice[x2][y2]=8;
+                            //matrice[perso[1].x][perso[1].y]=0;
+                            //matrice[x2][y2]=8;
                             perso[1].y=y2;
                             perso[1].x=x2;
                             perso[1].nb_bombes+=1;
                             toucheIsPress2[j]=1;
-                            affichage(matrice,perso,page);
+                            affichage(matrice,perso,Object,page,stage);
                         }
                     }
                 }
             }else
                 toucheIsPress2[j]=0;
         }
-    }
+    } //DEPLACEMENT J2
 }
 
-void explosion(t_joueur perso[],int matrice[X][Y],int *restebombe){
-    if(key[KEY_SPACE] && *restebombe < perso[0].nb_bombes){
-        matrice[perso[0].x][perso[0].y]=9;
-        *restebombe+=1;
-    }
-}
+void explosion(t_joueur perso[],t_bombe bombej1[],t_bombe bombej2[],int matrice[X][Y],int *nbbombe1,int *nbbombe2,BITMAP *page,BITMAP *Bombe[4],BITMAP *Feu[3],BITMAP *Object[NBOBJECTS],BITMAP *stage){
 
-void affichage(int matrice[X][Y],t_joueur perso[]/*,BITMAP *objects[NBOBJECTS]*/,BITMAP *page){
-    clear(page);
-    for(int i=0;i<X;i++){
-        for(int j=0;j<Y;j++){
-            //draw_sprite(page,objects[matrice[i][j]],i*50,j*50);
-            textprintf_ex(page,font,i*20,j*20, makecol(255,255,255),-1,"%d",matrice[i][j]); // test
+    if(*nbbombe1 < perso[0].nb_bombes && key[KEY_RSHIFT]){
+        bombej1[*nbbombe1].x=perso[0].x;
+        bombej1[*nbbombe1].y=perso[0].y;
+        bombej1[*nbbombe1].creation_time= time(NULL);
+        bombej1[*nbbombe1].explosion=0;
+        matrice[bombej1[*nbbombe1].x][bombej1[*nbbombe1].y]=3;
+        *nbbombe1+=1;
+    }
+
+    if(*nbbombe2 < perso[1].nb_bombes && key[KEY_SPACE]){
+        bombej2[*nbbombe2].x=perso[1].x;
+        bombej2[*nbbombe2].y=perso[1].y;
+        bombej2[*nbbombe2].creation_time= time(NULL);
+        bombej2[*nbbombe2].explosion=0;
+        matrice[bombej2[*nbbombe2].x][bombej2[*nbbombe2].y]=3;
+        *nbbombe2+=1;
+    }
+    time_t atm= time(NULL);
+    // -> ON PLACE LE FEU SUR LES CASE VIDE JUSQU'AU MOMENT OU ON TROUVE UNE CASE AVEC BLOCK OU MUR
+    // -> ON DETRUIT LE BLOCK OU ON S'ARRETE AU MUR
+    // -> ON ENREGISTRE LA POSITION DE LA FLAMME POUR PLUS TARD REMETTRE CETTE POSITION A 0
+    for(int i=0;i<*nbbombe1;i++){
+        if(atm - bombej1[i].creation_time >=2 && bombej1[i].explosion!=1){
+            bombej1[i].explosion=1;
+
+            //code d'explosion de bombe
+            x_plus(bombej1,matrice,perso,i,0,page);
+            x_minus(bombej1,matrice,perso,i,0,page);
+            y_plus(bombej1,matrice,perso,i,0,page);
+            y_minus(bombej1,matrice,perso,i,0,page);
+            affichage(matrice,perso,Object,page,stage);
+
+        }
+        if(atm - bombej1[i].creation_time >= 4 && bombej1[i].explosion==1){
+            for(int x=0;x<X;x++){
+                for(int y=0;y<Y;y++){
+                    if(bombej1[i].matrice[x][y]==4){
+                        matrice[x][y]=0;
+                    }
+                }
+            }
+            *nbbombe1-=1;
         }
     }
+    for(int i=0;i<*nbbombe2;i++){
+        if(atm - bombej2[i].creation_time >=2 && bombej2[i].explosion!=1){
+            bombej2[i].explosion=1;
+
+            //code d'explosion de bombe
+            x_plus(bombej2,matrice,perso,i,1,page);
+            x_minus(bombej2,matrice,perso,i,1,page);
+            y_plus(bombej2,matrice,perso,i,1,page);
+            y_minus(bombej2,matrice,perso,i,1,page);
+            affichage(matrice,perso,Object,page,stage);
+
+        }
+        if(atm - bombej2[i].creation_time >= 4 && bombej2[i].explosion==1){
+            for(int x=0;x<X;x++){
+                for(int y=0;y<Y;y++){
+                    if(bombej2[i].matrice[x][y]==4){
+                        matrice[x][y]=0;
+                    }
+                }
+            }
+            affichage(matrice,perso,Object,page,stage);
+            *nbbombe2-=1;
+        }
+    }
+}
+
+void x_plus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i,int p,BITMAP *page){
+    ///AXE X+
+    for(int j=0;j<perso[p].feu;j++){
+        if(matrice[bombe[i].x+j][bombe[i].y]!=1 && matrice[bombe[i].x+j][bombe[i].y]!=2){
+            matrice[bombe[i].x+j][bombe[i].y]=4;
+            bombe[i].matrice[bombe[i].x+j][bombe[i].y]=4;
+            if(bombe[i].x+j==perso[0].x && bombe[i].y==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x+j==perso[1].x && bombe[i].y==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+        }else if(matrice[bombe[i].x+j][bombe[i].y]==2){
+            matrice[bombe[i].x+j][bombe[i].y]=4;
+            bombe[i].matrice[bombe[i].x+j][bombe[i].y]=4;
+            break;
+        }else if(matrice[bombe[i].x+j][bombe[i].y]==1){
+            break;
+        }
+    }
+}
+void x_minus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i,int p,BITMAP *page){
+    ///AXE X-
+    for(int j=0;j<perso[p].feu;j++){
+        if(matrice[bombe[i].x-j][bombe[i].y]!=1 && matrice[bombe[i].x-j][bombe[i].y]!=2){
+            matrice[bombe[i].x-j][bombe[i].y]=4;
+            bombe[i].matrice[bombe[i].x-j][bombe[i].y]=4;
+            if(bombe[i].x-j==perso[0].x && bombe[i].y==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x-j==perso[1].x && bombe[i].y==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+        }else if(matrice[bombe[i].x-j][bombe[i].y]==2){
+            matrice[bombe[i].x-j][bombe[i].y]=4;
+            bombe[i].matrice[bombe[i].x-j][bombe[i].y]=4;
+            break;
+        }else if(matrice[bombe[i].x-j][bombe[i].y]==1){
+            break;
+        }
+    }
+}
+void y_plus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i,int p,BITMAP *page){
+
+    ///AXE Y+
+    for(int j=0;j<perso[p].feu;j++){
+        if(matrice[bombe[i].x][bombe[i].y+j]!=1 && matrice[bombe[i].x][bombe[i].y+j]!=2){
+            matrice[bombe[i].x][bombe[i].y+j]=4;
+            bombe[i].matrice[bombe[i].x][bombe[i].y+j]=4;
+            if(bombe[i].x==perso[0].x && bombe[i].y+j==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x==perso[1].x && bombe[i].y+j==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+
+        }else if(matrice[bombe[i].x][bombe[i].y+j]==2){
+            matrice[bombe[i].x][bombe[i].y+j]=4;
+            bombe[i].matrice[bombe[i].x][bombe[i].y+j]=4;
+            break;
+        }else if(matrice[bombe[i].x][bombe[i].y+j]==1){
+            break;
+        }
+    }
+}
+void y_minus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i,int p,BITMAP *page){
+
+    ///AXE Y-
+    for(int j=0;j<perso[p].feu;j++){
+        if(matrice[bombe[i].x][bombe[i].y-j]!=1 && matrice[bombe[i].x][bombe[i].y-j]!=2){
+            matrice[bombe[i].x][bombe[i].y-j]=4;
+            bombe[i].matrice[bombe[i].x][bombe[i].y-j]=4;
+            if(bombe[i].x==perso[0].x && bombe[i].y-j==perso[0].y){
+                perso[0].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+            if(bombe[i].x==perso[1].x && bombe[i].y-j==perso[1].y){
+                perso[1].vie=0;
+                /// RAJOUTER UNE VARIABLE POUR FINIR LA PARTIE (VOIR UN DRAW SPRITE)
+            }
+        }else if(matrice[bombe[i].x][bombe[i].y-j]==2){
+            matrice[bombe[i].x][bombe[i].y-j]=4;
+            matrice[bombe[i].x][bombe[i].y-j]=4;
+            break;
+        }else if(matrice[bombe[i].x][bombe[i].y-j]==1){
+            break;
+        }
+    }
+}
+
+
+void affichage(int matrice[X][Y],t_joueur perso[],BITMAP *objects[NBOBJECTS],BITMAP *page,BITMAP *stage){
+    clear(page);
+    blit(stage,page,0,0,0,0,SCREEN_W,SCREEN_H);
+    for(int i=0;i<X;i++){
+        for(int j=0;j<Y;j++){
+            draw_sprite(page,objects[matrice[i][j]],i*50,j*50);
+            textprintf_ex(page,font,800+i*20,j*20, makecol(255,255,255),-1,"%d",matrice[i][j]); // test
+
+
+        }
+    }
+    textprintf_ex(page,font,perso[0].x*50,perso[0].y*50, makecol(255,255,255),-1,"7");
+    textprintf_ex(page,font,perso[1].x*50,perso[1].y*50, makecol(255,255,255),-1,"8");
+
     blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 }
 
 void Bomberman(){
     int matrice[X][Y];
     t_joueur perso[2];
-    //BITMAP *objects[ANMATION];
+    t_bombe bombej1[10];
+    t_bombe bombej2[10];
+    BITMAP *Object[NBOBJECTS];
+    BITMAP *Stage;
     BITMAP *page;
+    BITMAP *Feu[3];
+    BITMAP *Bombe[4];
+
     int animation=0;
     bool TouchePressed1[5];
     bool TouchePressed2[5];
     int toucheIsPress1[5] = {0};
     int toucheIsPress2[5] = {0};
+    int nbbombe1,nbbombe2;
+    nbbombe1 = nbbombe2 = 0;
 
 
 
     page= create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(page);
+    Object[0]= load_bitmap("images/Vide.bmp",NULL);
+    Object[1]= load_bitmap("images/Mur.bmp",NULL);
+    Object[2]= load_bitmap("images/Block.bmp",NULL);
+    Object[3]= load_bitmap("images/Bombe1.bmp",NULL);
+    Object[4]= load_bitmap("images/Fire_start.bmp",NULL);
+    Object[5]= load_bitmap("images/Fire_up.bmp",NULL);
+    Object[6]= load_bitmap("images/Bombe_Up.bmp",NULL);
+
+    Stage= load_bitmap("images/Stage.bmp",NULL);
+
+
     init_matrice(matrice);
     init_perso(perso);
-    affichage(matrice,perso/*,objects*/,page);
-
-
+    init_bombe(bombej1);
+    init_bombe(bombej2);
+    affichage(matrice,perso,Object,page,Stage);
 
 
     while(!key[KEY_ESC]){
@@ -227,7 +427,15 @@ void Bomberman(){
         TouchePressed2[1]=key[KEY_S];
         TouchePressed2[2]=key[KEY_A];
         TouchePressed2[3]=key[KEY_D];
+        textprintf_ex(page,font,500,0, makecol(255,255,255),-1,"Bombj1.explosion : %d",bombej1[0].explosion); // test
+        textprintf_ex(page,font,500,20, makecol(255,255,255),-1,"BombJ1.x_plus_feu : %d",bombej1[0].x_plus_feu[0]); // test
+        textprintf_ex(page,font,500,40, makecol(255,255,255),-1,"Bombj1.x_minus_feu : %d",bombej1[0].x_minus_feu[0]); // test
+        textprintf_ex(page,font,500,60, makecol(255,255,255),-1,"Bombj1.y_plus_feu : %d",bombej1[0].y_plus_feu[0]); // test
+        textprintf_ex(page,font,500,80, makecol(255,255,255),-1,"Bombj1.y_minus_feu : %d",bombej1[0].y_minus_feu[0]); // test
 
-        dplacement(matrice,perso,&animation,TouchePressed1,TouchePressed2,toucheIsPress1,toucheIsPress2,page);
+        dplacement(matrice,perso,&animation,TouchePressed1,TouchePressed2,toucheIsPress1,toucheIsPress2,page,Object,Stage);
+        explosion(perso,bombej1,bombej2,matrice,&nbbombe1,&nbbombe2,page,Bombe,Feu,Object,Stage);
+        affichage(matrice,perso,Object,page,Stage);
+
     }
 }
