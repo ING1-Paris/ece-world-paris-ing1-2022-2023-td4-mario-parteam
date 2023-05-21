@@ -5,7 +5,7 @@
 //sources : https://fercoq.bitbucket.io/allegro/Alleg_C4/3_1_scrolling_sur_un_decor.html
 #include "map.h"
 
-BITMAP *load_bitmap_check(char *nomImage){
+/*BITMAP *load_bitmap_check(char *nomImage){
     BITMAP *bmp;
     bmp=load_bitmap(nomImage,NULL);
     if (!bmp)
@@ -14,7 +14,7 @@ BITMAP *load_bitmap_check(char *nomImage){
         exit(EXIT_FAILURE);
     }
     return bmp;
-}
+}*/
 
 void deplacement(t_perso *perso,int *u,int *d,int *r,int *l,int *key_up,int *key_down, int *key_right,int *key_left){
     *key_right=*key_left=*key_up=*key_down=0;
@@ -54,29 +54,6 @@ void deplacement(t_perso *perso,int *u,int *d,int *r,int *l,int *key_up,int *key
 
 }
 
-void deplacementmap(BITMAP *map,t_perso *perso, int screenx,int screeny){
-    if(perso->x > SCREEN_W/2){
-        screenx = perso->x - SCREEN_W/2;
-    }
-    if (perso->x < SCREEN_W/2)
-        screenx = perso->x - SCREEN_W/2;
-
-    if(perso->y > SCREEN_H/2){
-        screeny = perso->y - SCREEN_H/2;
-    }
-    if (perso->y < SCREEN_H/2)
-        screeny = perso->y - SCREEN_H/2;
-
-    if ( screenx < 0 )
-        screenx=0;
-    if ( screenx > map->w - SCREEN_W )
-        screenx=map->w - SCREEN_W;
-
-    if ( screeny < 0 )
-        screeny=0;
-    if ( screeny > map->h - SCREEN_H )
-        screeny=map->h - SCREEN_H;
-}
 
 void map(){
 
@@ -93,7 +70,7 @@ void map(){
 
     clear_bitmap(page);
 
-    map= load_bitmap_check("images/Game_Boy_Advance_Pokemon_Emerald_Battle_Frontier.bmp");
+    map= load_bitmap_check("images/LAMAP.bmp");
 
     perso=(t_perso *) malloc(sizeof (t_perso));
 
@@ -122,32 +99,32 @@ void map(){
     draw_sprite(page,perso->front[0],perso->x,perso->y);
 
     while(!key[KEY_ESC]){
-        if (perso->x - screenx > SCREEN_W / 3) {
-            screenx = perso->x - SCREEN_W / 4;
+        if (perso->x - screenx > SCREEN_W /2) {
+            screenx = perso->x - SCREEN_W /2;
         }
-        if (perso->x - screenx < SCREEN_W / 3) {
-            screenx = perso->x - SCREEN_W / 4;
+        if (perso->x - screenx < SCREEN_W /2) {
+            screenx = perso->x - SCREEN_W /2;
         }
 
-        if (perso->y - screeny > SCREEN_H / 3) {
-            screeny = perso->y - SCREEN_H / 4;
+        if (perso->y - screeny > SCREEN_H /2) {
+            screeny = perso->y - SCREEN_H /2;
         }
-        if (perso->y - screeny < SCREEN_H / 3) {
-            screeny = perso->y - SCREEN_H / 4;
+        if (perso->y - screeny < SCREEN_H /2) {
+            screeny = perso->y - SCREEN_H /2;
         }
 
         if (screenx < 0) {
             screenx = 0;
         }
-        if (screenx > map->w - SCREEN_W / 3) {
-            screenx = map->w - SCREEN_W / 3;
+        if (screenx > map->w ) {
+            screenx = map->w;
         }
 
         if (screeny < 0) {
             screeny = 0;
         }
-        if (screeny > map->h - SCREEN_H / 3) {
-            screeny = map->h - SCREEN_H / 3;
+        if (screeny > map->h ) {
+            screeny = map->h;
         }
 
         stretch_blit(map,page,screenx,screeny,SCREEN_W/3,SCREEN_H/3,0,0,SCREEN_W,SCREEN_H);
@@ -170,4 +147,47 @@ void map(){
     free(perso);
     destroy_bitmap(map);
     destroy_bitmap(page);
+}
+void initialisation_perso(t_perso *perso){
+    perso->tx=16;
+    perso->ty=21;
+    perso->x=1920/2 + perso->tx;
+    perso->y=1080/2 + perso->ty;
+    perso->dx=0;
+    perso->dy=0;
+}
+
+void collision(BITMAP *page,t_perso *perso,t_map *map,int *u,int *d, int *r,int *l){
+    for(int i=0;i<20;i++){
+        if(getpixel(map->collision,map->x-perso->x,perso->y));
+        if(key[KEY_UP]){
+            *u+=*u+1;
+            *u%=3;
+            map->dy=5;
+            map->y-=map->dy;
+        }
+        if(key[KEY_DOWN]){
+            *d+=*d+1;
+            *d%=3;
+            map->dy=5;
+            map->y+=map->dy;
+        }
+        if(key[KEY_RIGHT]){
+            *r+=*r+1;
+            *r%=3;
+            map->dx=5;
+            map->x+=map->dx;
+        }
+        if(key[KEY_LEFT]){
+            *l+=*l+1;
+            *l%=3;
+            map->dx=5;
+            map->x-=map->dx;
+        }
+    }
+
+
+
+
+
 }

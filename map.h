@@ -22,7 +22,15 @@ typedef struct perso{
     BITMAP *back[3];
     BITMAP *side[3];
 }t_perso;
+
+typedef struct map{
+    int x,y;
+    int dx,dy;
+    BITMAP *map;
+    BITMAP *collision;
+}t_map;
 BITMAP * load_bitmap_check(char *nomImage);
+void initialisation_perso(t_perso *perso);
 void deplacement(t_perso *perso,int *u,int *d,int *r,int *l,int *key_up,int *key_down, int *key_right,int *key_left);
 void deplacementmap(BITMAP *map,t_perso *perso, int screenx,int screeny);
 void map();

@@ -9,6 +9,9 @@
 #include "guitarhero.h"
 #include "bomberman.h"
 #include "riviere.h"
+#include "TirAuxBallons.h"
+#include "Taupes.h"
+#include "PPC.h"
 
 void allegroinit();
 
