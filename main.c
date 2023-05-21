@@ -7,7 +7,8 @@ int main() {
     //Bomberman();
     //lejeu();
     //tirballons();
-    Taupe();
+    //Taupe();
+    //PPC();
     return 0;
 }
 END_OF_MAIN()

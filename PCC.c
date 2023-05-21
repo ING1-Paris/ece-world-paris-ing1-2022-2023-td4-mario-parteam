@@ -6,26 +6,27 @@ void regles(){
 
 
 
-void jouer(BITMAP *jeu, BITMAP *buffer, int player_choice,int computer_choice, BITMAP *rock_me, BITMAP *rock_enemy, BITMAP *paper_me, BITMAP *paper_enemy, BITMAP *scissors_me, BITMAP *scissors_enemy, BITMAP *perdu1,BITMAP *perdu2, int nombre_win, BITMAP *game_over, bool choix_valide, bool choix_valide_bot, int bouton_x, int play_bouton_y, int bouton_width, int bouton_height) {
+void jouer(BITMAP *jeu, BITMAP *buffer, int player_choice,int computer_choice, BITMAP *rock_me, BITMAP *rock_enemy, BITMAP *paper_me, BITMAP *paper_enemy, BITMAP *scissors_me, BITMAP *scissors_enemy, BITMAP *perdu1,BITMAP *perdu2, int nombre_win, BITMAP *game_over, bool choix_valide, bool choix_valide_bot, int bouton_x, int play_bouton_y, int bouton_width, int bouton_height, BITMAP *Thibaut, BITMAP *perdu3) {
     blit(jeu, buffer, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    stretch_sprite(buffer,perdu1, 400, 300, 200,400);
-    textout_ex(buffer, font, "Entrez votre choix (0 pour pierre, 1 pour papier, 2 pour ciseaux):", 50, 100,makecol(0, 0, 0), -1);
-    textout_ex(buffer, font, "C'est toi mon adversaire", 620, 300,makecol(0, 0, 0), -1);
+    stretch_sprite(buffer,perdu1, 1000, 300, 100,200);
+    stretch_sprite(buffer,Thibaut, 650, 300, 300,200);
+    textout_ex(buffer, font, "Entrez votre choix (0 pour pierre, 1 pour papier, 2 pour ciseaux):", SCREEN_W/2, 160,makecol(255, 255, 255), -1);
+    textout_ex(buffer, font, "C'est toi mon adversaire", 940, 300,makecol(255, 255, 255), -1);
     blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     while(!choix_valide){
         if (key[KEY_0]) {
             player_choice = ROCK;
-            draw_sprite(buffer, rock_me, 750, 550);
+            draw_sprite(buffer, rock_me, 1000, 300);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             choix_valide= true;
         } else if (key[KEY_1]) {
             player_choice = PAPER;
-            draw_sprite(buffer, paper_me, 750, 550);
+            draw_sprite(buffer, paper_me, 1000, 300);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             choix_valide= true;
         } else if (key[KEY_2]) {
             player_choice = SCISSORS;
-            draw_sprite(buffer, scissors_me, 750, 550);
+            draw_sprite(buffer, scissors_me, 1000, 300);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             choix_valide= true;
         }
@@ -39,15 +40,15 @@ void jouer(BITMAP *jeu, BITMAP *buffer, int player_choice,int computer_choice, B
     computer_choice = rand() % 3;
     while(!choix_valide_bot){
         if (computer_choice == ROCK) {
-            draw_sprite(buffer, rock_enemy, SCREEN_WIDTH- 1170, 150);
+            draw_sprite(buffer, rock_enemy, 800, 200);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             choix_valide_bot= true;
         } else if (computer_choice == PAPER) {
-            draw_sprite(buffer, paper_enemy, SCREEN_WIDTH- 1170, 150);
+            draw_sprite(buffer, paper_enemy, 800, 200);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             choix_valide_bot= true;
         } else if (computer_choice == SCISSORS) {
-            draw_sprite(buffer, scissors_enemy, SCREEN_WIDTH- 1170, 150);
+            draw_sprite(buffer, scissors_enemy, 800, 200);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             choix_valide_bot= true;
         }
@@ -56,38 +57,26 @@ void jouer(BITMAP *jeu, BITMAP *buffer, int player_choice,int computer_choice, B
         rest(2000);
         while (!key[KEY_ESC]){
             if (player_choice == computer_choice) {
-                blit(game_over, game_over, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                stretch_sprite(game_over,perdu2, 750, 400, 100,200);
-                textout_ex(game_over, font, "Egalité, tu as de la chance...", 50, 100, makecol(0, 0, 0),-1);
-                //blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                stretch_sprite(game_over,perdu2, 1020, 500, 100,200);
+                textout_centre_ex(game_over, font, "Egalité, tu as de la chance...", SCREEN_W/2, 255, makecol(255, 255, 255),-1);
+                blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             } else if ((player_choice == ROCK && computer_choice == SCISSORS) ||
                        (player_choice == PAPER && computer_choice == ROCK) ||
                        (player_choice == SCISSORS && computer_choice == PAPER)) {
                 nombre_win++;
-                blit(game_over, game_over, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                stretch_sprite(game_over,perdu2, 750, 400, 100,200);
-                textout_ex(game_over, font, "Je n'y crois pas tu as gagné", 50, 100, makecol(0, 0, 0),-1);
-                //blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                stretch_sprite(game_over,perdu3, 1020, 500, 100,200);
+                textout_centre_ex(game_over, font, "Je n'y crois pas tu as gagné", SCREEN_W/2, 255, makecol(255, 255, 255),-1);
+                blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             } else {
 
 
                 blit(game_over, game_over, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                stretch_sprite(game_over,perdu2, 750, 400, 100,200);
-                textout_ex(game_over, font, "Facile !", 50, 100, makecol(0, 0, 0), -1);
+                stretch_sprite(game_over,perdu1, 1020, 500, 100,200);
+                textout_centre_ex(game_over, font, "Facile !", SCREEN_W/2, 255, makecol(255, 255, 255), -1);
                 //blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
             }
-            rectfill(game_over, bouton_x, 700, bouton_x + bouton_width, 700 + bouton_height, makecol(255, 255, 255));
-            textprintf_centre_ex(game_over, font, bouton_x + bouton_width / 2, 725, makecol(0, 0, 0), -1, "Re-jouer");
-            if (mouse_b && mouse_x >= bouton_x && mouse_x <= bouton_x + bouton_width && mouse_y>=700 && mouse_y<= 700 + bouton_height){
-                //l'utilisateur a appuyé sur le bouton jouer
-                while(!key[KEY_ESC]){
-                    jouer(jeu, buffer, player_choice, computer_choice, rock_me, rock_enemy, paper_me,
-                          paper_enemy, scissors_me, scissors_enemy, perdu1, perdu2, nombre_win, game_over, choix_valide, choix_valide_bot, bouton_x,play_bouton_y,bouton_width, bouton_height);
-                }
 
-
-            }
             blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         }
@@ -110,6 +99,8 @@ void PPC(){
     BITMAP *jeu_background ;
     BITMAP *perdu1;
     BITMAP *perdu2;
+    BITMAP *perdu3;
+    BITMAP *Thibaut;
     srand(time(NULL)); // Initialiser le générateur de nombres aléatoires
     show_mouse(screen);
 
@@ -130,6 +121,8 @@ void PPC(){
 
     buffer= create_bitmap(SCREEN_WIDTH, SCREEN_HEIGHT);
     clear_bitmap(buffer);
+    perdu3= load_bitmap("images/Victoire_moi.bmp",NULL);
+    Thibaut = load_bitmap("images/Thibaut.bmp", NULL);
     game_over= load_bitmap("images/Ecran_perdu.bmp",NULL);
     menu= load_bitmap("images/menu.bmp", NULL);
     rock_me = load_bitmap("images/pierre_moi.bmp", NULL);
@@ -155,7 +148,7 @@ void PPC(){
             //l'utilisateur a appuyé sur le bouton jouer
             while(!key[KEY_SPACE]) {
                 jouer(jeu_background, buffer, player_choice, computer_choice, rock_me, rock_enemy, paper_me,
-                      paper_enemy, scissors_me, scissors_enemy, perdu1, perdu2, nombre_win, game_over, choix_valide, choix_valide_bot, bouton_x,play_bouton_y,bouton_width, bouton_height);
+                      paper_enemy, scissors_me, scissors_enemy, perdu1, perdu2, nombre_win, game_over, choix_valide, choix_valide_bot, bouton_x,play_bouton_y,bouton_width, bouton_height, Thibaut, perdu3);
             }
         }
         if(mouse_b && mouse_x >= bouton_x && mouse_x <= bouton_x + bouton_width && mouse_y>=regles_bouton_y && mouse_y<= regles_bouton_y + bouton_height) {
