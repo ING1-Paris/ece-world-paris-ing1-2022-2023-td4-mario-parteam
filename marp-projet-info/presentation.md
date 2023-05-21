@@ -56,17 +56,6 @@ Nous avons choisis le thème Nintendo afin d'avoir assez de sprites.
 *Réalisée par : **Raphaël**, **Apolline**.*
 ![bg right:78% 96%](./images/map.bmp)
 
-
----
-
-# Carte `2/2`
-
-Décrire ici les fonctionnalités implémentées : choix joueurs, saisie des noms, affichage des scores/classement... Comment avez-vous fait ? Quels étaient les problèmes rencontrés.
-
-Suite si ça ne tient pas sur une slide. 
-
-:bulb: *Vous pouvez faire comme ça à chaque fois qu'une slide ne suffit pas, il vaut mieux 5 slides légères qu'une surchargée.*
-
 ---
 
 # Organisation des jeux
@@ -101,7 +90,7 @@ Décrire le fonctionnement du jeu dans les grandes lignes. Comment vous l'avez c
 
 # Guitar Hero
 
-Pour chaque jeu (bien détailler au moins un jeu par personne), précisez les structures de données (structures importantes, tableaux importants, listes chainées...) et les fonctions importantes (avec leur prototype).
+Détail
 
 ### Structures
 
@@ -128,9 +117,8 @@ classDiagram
     
 </div>
 
-### Tableaux
 
-- `Canard canards[20]`
+
 ---
 
 ![bg right:40%](images/)
@@ -210,13 +198,12 @@ classDiagram
     t_bombe : int matrice[X][Y]
 
     t_bombe : time_t creation_time
-    
+
     t_bombe : int explosion, explosion_now
 </div>
 
-### Tableaux
 
-- `Canard canards[20]`
+
 ---
 
 
@@ -295,9 +282,8 @@ classDiagram
     Canne : Canard* canard
 </div>
 
-### Tableaux
 
-- `Canard canards[20]`
+
 ---
 
 ![bg right:40%](images/)
@@ -365,9 +351,8 @@ classDiagram
     Canne : Canard* canard
 </div>
 
-### Tableaux
 
-- `Canard canards[20]`
+
 ---
 
 ![bg right:40%](images/)
@@ -437,9 +422,8 @@ classDiagram
     Canne : Canard* canard
 </div>
 
-### Tableaux
 
-- `Canard canards[20]`
+
 ---
 
 ![bg right:40%](images/)
@@ -504,9 +488,6 @@ classDiagram
     
 </div>
 
-### Tableaux
-
-- `t_acteur tab[NBALLONS]`
 ---
 
 # Tir aux ballons
