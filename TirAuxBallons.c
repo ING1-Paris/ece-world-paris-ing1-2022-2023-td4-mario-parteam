@@ -120,6 +120,7 @@ void tirSouris(t_acteur acteur, BITMAP *sprite) {
 
 void tirballons()
 {
+
     t_acteur mesActeurs;
     mesActeurs=creerActeur();
     BITMAP *page; // double buffer
@@ -137,6 +138,8 @@ void tirballons()
         dessinerActeur(page,sprite, mesActeurs);
         tirSouris(mesActeurs, sprite);
         blit(page, screen, 0,0,0,0, SCREEN_W, SCREEN_H);//A mettre tout à la fin du while
+        show_mouse(screen);
+        show_mouse(page);
 
     }
 
