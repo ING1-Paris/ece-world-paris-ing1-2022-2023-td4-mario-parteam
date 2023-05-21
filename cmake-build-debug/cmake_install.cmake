@@ -1,4 +1,4 @@
-# Install script for directory: C:/LINE/scolaire/Projet_2/ece-world-paris-ing1-2022-2023-td4-mario-parteam
+# Install script for directory: C:/LINE/scolaire/Projet_2/ece-world-paris-ing1-2022-2023-td4-mario-parteam2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/LINE/scolaire/Projet_2/ece-world-paris-ing1-2022-2023-td4-mario-parteam/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/LINE/scolaire/Projet_2/ece-world-paris-ing1-2022-2023-td4-mario-parteam2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -8,13 +8,23 @@
 #include "generalfunctions.h"
 #define RONDINS 25
 
-typedef struct rondins{
-    int x,y;
-    int dx,dy;
-    int prex,prey;
-    int tx,ty;
+typedef struct lesrondins{
+    int x,y;    //position du coin supérieur gauche
+    int dx;     //le mouvement se fait uniquement sur x
+    int etat;   //sur l'eau ou non
+    int rayons; //quelle ligne
+    int tmpdx;  // ralentir les déplacements en x
+    int cptdx;  // compteur de ralentissement
+    int tx,ty;  // largeur et hauteur
 }t_rondins;
 
-void leback ();
+void lejeu();
+
+t_rondins * creerRONDINS(int etat, int x, int y, int dx, int tmpdx);
+void remplirlesrondins(t_rondins * tab[RONDINS]);
+void actualiserRondins(t_rondins *rondins);
+void actualiserlesrondins(t_rondins * tab[RONDINS]);
+void dessinerRondins(BITMAP *bmp, t_rondins *rondins, BITMAP* lerondin);
+void dessinerlesrondins(BITMAP *bmp,t_rondins * tab[RONDINS], BITMAP *lerondin);
 
 #endif //MARIO_PARTEAM_V1_RIVIERE_H

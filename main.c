@@ -4,7 +4,8 @@ int main() {
     allegroinit();
     //map();
     //Gh();//FINIR LA MAP + CONDITION DE VICTOIRE
-    Bomberman();
+    //Bomberman();
+    //lejeu();
     return 0;
 }
 END_OF_MAIN()
