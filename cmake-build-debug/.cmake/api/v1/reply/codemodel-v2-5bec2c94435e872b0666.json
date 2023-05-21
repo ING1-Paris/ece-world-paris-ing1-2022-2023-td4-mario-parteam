@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Mario_Parteam_V1",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ece-world-paris-ing1-2022-2023-td4-mario-parteam::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ece-world-paris-ing1-2022-2023-td4-mario-parteam-Debug-47f5377e3e4c4c8340ed.json",
+					"name" : "ece-world-paris-ing1-2022-2023-td4-mario-parteam",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/LINE/scolaire/Projet_2/ece-world-paris-ing1-2022-2023-td4-mario-parteam3/cmake-build-debug",
+		"source" : "C:/LINE/scolaire/Projet_2/ece-world-paris-ing1-2022-2023-td4-mario-parteam3"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
