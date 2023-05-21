@@ -13,7 +13,16 @@ void regles_taupes(BITMAP* regles_background){
 
 }
 
-
+BITMAP *load_bitmap_check(char *nomImage){
+    BITMAP *bmp;
+    bmp=load_bitmap(nomImage,NULL);
+    if (!bmp)
+    {
+        allegro_message("pas pu trouver %s",nomImage);
+        exit(EXIT_FAILURE);
+    }
+    return bmp;
+}
 void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *taupe_visible, int *taupe_timer, int score, int taupe_width, int taupe_height, int taupe_delay, int valeurs[], int division, int *taupe_x, int *taupe_y, int taupe_rester, int elapsed_time) {
 
     blit(jeu_background, buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
@@ -69,10 +78,10 @@ void Taupe(){
     BITMAP* taupes;
     BITMAP* buffer;
     // Chargement de l'image de fond
-    menu_background = load_bitmap("menu6.bmp", NULL);
-    regles_background = load_bitmap("regles.bmp", NULL);
-    jeu_background = load_bitmap("jeu3.bmp", NULL);
-    taupes = load_bitmap("taupes.bmp", NULL);
+    menu_background = load_bitmap("images/menu6.bmp", NULL);
+    regles_background = load_bitmap("images/regles.bmp", NULL);
+    jeu_background = load_bitmap("images/jeu3.bmp", NULL);
+    taupes = load_bitmap("images/taupes.bmp", NULL);
     buffer=  create_bitmap(SCREEN_W, SCREEN_H);
 
     int score = 0;

@@ -5,7 +5,7 @@
 //sources : https://fercoq.bitbucket.io/allegro/Alleg_C4/3_1_scrolling_sur_un_decor.html
 #include "map.h"
 
-BITMAP *load_bitmap_check(char *nomImage){
+/*BITMAP *load_bitmap_check(char *nomImage){
     BITMAP *bmp;
     bmp=load_bitmap(nomImage,NULL);
     if (!bmp)
@@ -14,7 +14,7 @@ BITMAP *load_bitmap_check(char *nomImage){
         exit(EXIT_FAILURE);
     }
     return bmp;
-}
+}*/
 
 void deplacement(t_perso *perso,int *u,int *d,int *r,int *l,int *key_up,int *key_down, int *key_right,int *key_left){
     *key_right=*key_left=*key_up=*key_down=0;
