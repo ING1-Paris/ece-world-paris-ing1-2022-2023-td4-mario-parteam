@@ -7,6 +7,8 @@
 #include "generalfunctions.h"
 #include "map.h"
 #include "guitarhero.h"
+#include "bomberman.h"
+#include "riviere.h"
 
 void allegroinit();
 

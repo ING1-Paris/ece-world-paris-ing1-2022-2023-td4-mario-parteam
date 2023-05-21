@@ -127,12 +127,11 @@ void detectScore(t_score *score, t_boutons *boutons,BITMAP *page, bool touchePre
     }
 }
 
-void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5],double *volume){ //rajouter une condition quand un autre stage sera créé
+void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5]){ //rajouter une condition quand un autre stage sera créé
     int toucheIsPress[5] = {0};
-    int vol;
     install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,NULL);
     SAMPLE *Kirby= load_sample("Music/Gourmet Race - Kirby： Super Star.wav");
-    vol=255*(1/(*volume));
+    //vol=255*(1/(*volume));
     BITMAP *buffer;
     BITMAP *background;
     BITMAP *KirbySing;
@@ -144,8 +143,8 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
         clear(page);
         draw_sprite(page,KirbySing,1490,820);
         blit(background,page,0,0,0,0,SCREEN_W,SCREEN_H);
-        if(getpixel(page,XSTAGE,550)==makecol(255,255,255))
-            play_sample(Kirby,vol,0,1000,1);
+        if(getpixel(screen,XSTAGE+10,550)==makecol(255,255,255))
+            play_sample(Kirby,255,0,1000,1);
         //Rajouter un 3,2,1;
         ystage-=10;
 
@@ -185,21 +184,8 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
     destroy_bitmap(stage);
 }
 
-int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2, int *l,double *volume){
+int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2){
         if(key[KEY_DOWN] && getpixel(screen,250,50)== makecol(0,0,0)){
-            *x1=250;
-            *x2=1200;
-            *y1=400;
-            *y2=600;
-        }
-
-        if(key[KEY_DOWN] && getpixel(screen,250,400)== makecol(0,0,0)){
-            *x1=250;
-            *x2=1200;
-            *y1=700;
-            *y2=800;
-        }
-        if(key[KEY_UP] && getpixel(screen,250,700)==makecol(0,0,0)){
             *x1=250;
             *x2=1200;
             *y1=400;
@@ -212,16 +198,6 @@ int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2, int *l,do
             *y2=250;
 
         }
-        if(*y1==700 && key[KEY_RIGHT]){
-            *l+=1;
-            if(*l>1190)
-                *l=1190;
-
-        }else if(*y1==700 && key[KEY_LEFT]){
-            *l-=1;
-            if(*l<260)
-                *l=260;
-        }
         if(*y1==400 && key[KEY_SPACE]){
             return 2;
         }
@@ -230,15 +206,12 @@ int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2, int *l,do
             return 1;
         }
 
-        *volume=((*l*100)/1190);
         blit(fond,page,0,0,0,0,SCREEN_W,SCREEN_H);
-        rectfill(page,260,710,*l,790,makecol(0,0,0));
         rect(page,*x1,*y1,*x2,*y2, makecol(0,0,0));
         rect(page,*x1-1,*y1-1,*x2+1,*y2+1, makecol(0,0,0));
         rect(page,*x1-2,*y1-2,*x2+2,*y2+2, makecol(0,0,0));
         textprintf_ex(page,font,750,146, makecol(0,0,0),-1,"Jouer");
         textprintf_ex(page,font,750,500, makecol(0,0,0),-1,"Quitter");
-        textprintf_ex(page,font,100,750, makecol(0,0,0),-1,"Volume %f",*volume);
 
         blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
         clear_bitmap(page);
@@ -251,9 +224,7 @@ void Gh(){
     BITMAP *stage;
     BITMAP *page;
     BITMAP *fond;
-    BITMAP *background;
     bool touchePresse[5] = {false};
-    double volume;
 
     int x1=250;
     int x2=1200;
@@ -277,12 +248,17 @@ void Gh(){
     initScore(score);
 
     while(!key[KEY_ESC]){
-        Menu(page,fond,&x1,&x2,&y1,&y2,&l,&volume);
+        Menu(page,fond,&x1,&x2,&y1,&y2);
 
 
-        if(Menu(page,fond,&x1,&x2,&y1,&y2,&l,&volume)==1)
-            guitareHero(score,boutons,stage,page,YSTAGE,touchePresse,&volume);
+        if(Menu(page,fond,&x1,&x2,&y1,&y2)==1)
+            guitareHero(score,boutons,stage,page,YSTAGE,touchePresse);
     }
+    free(score);
+    free(boutons);
+    destroy_bitmap(stage);
+    destroy_bitmap(fond);
+    destroy_bitmap(page);
 
 }
 
