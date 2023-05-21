@@ -147,7 +147,7 @@ void map(){
     free(perso);
     destroy_bitmap(map);
     destroy_bitmap(page);
-}*/
+}
 void initialisation_perso(t_perso *perso){
     perso->tx=16;
     perso->ty=21;
@@ -189,9 +189,5 @@ void collision(BITMAP *page,t_perso *perso,t_map *map,int *u,int *d, int *r,int 
 
 
 
-
-}
-
-void map(){
 
 }

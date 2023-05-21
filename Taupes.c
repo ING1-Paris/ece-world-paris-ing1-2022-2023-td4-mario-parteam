@@ -23,34 +23,34 @@ BITMAP *load_bitmap_check(char *nomImage){
     }
     return bmp;
 }
-void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *taupe_visible, int *taupe_timer, int score, int taupe_width, int taupe_height, int taupe_delay, int valeurs[], int division, int *taupe_x, int *taupe_y, int taupe_rester, int elapsed_time) {
+void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *taupe_visible, int *taupe_timer, int *score, int taupe_width, int taupe_height, int taupe_delay, int valeurs[], int division, int *taupe_x, int *taupe_y, int taupe_rester, int elapsed_time) {
 
     blit(jeu_background, buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
     blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+    clock_t start_time = clock();
     while (*taupe_visible == 1) {
         blit(jeu_background, buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
         stretch_sprite(buffer, taupes, *taupe_x, *taupe_y, 90, 90);
+        textprintf_ex(buffer, font, 10, 10, makecol(255, 255, 255), -1, "Score: %d", *score);
         blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        if (mouse_b & 1 && mouse_x >= *taupe_x && mouse_x <= *taupe_x + taupe_width && mouse_y >= *taupe_y && mouse_y <= *taupe_y + taupe_height) {
+
+        if (mouse_b & 1 && mouse_x >= *taupe_x && mouse_x <= *taupe_x + taupe_width && mouse_y >= *taupe_y &&
+            mouse_y <= *taupe_y + taupe_height) {
             clear_bitmap(buffer);
+            *taupe_visible = 0;
+            *score+= 1;
             blit(jeu_background, buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
-            *taupe_visible = 0;
-            *taupe_timer = 0;  // Réinitialise le compteur lorsque la taupe est cliquée
-            score++;
-            if (elapsed_time >= 60) {
-                *taupe_visible = 0;  // Arrête la boucle lorsque la minute est écoulée
-                break;}
+            break;
         }
-        else {
-            rest(1000);
-            clear_bitmap(buffer);
+        elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
+        if (elapsed_time >= 2) {
+            *taupe_visible = 0;
+            clear(buffer);
             blit(jeu_background, buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
-            blit(buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
-            *taupe_visible = 0;
-            *taupe_timer = 0;  // Réinitialise le compteur lorsque le délai est écoulé
-        }
+            blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            break;
+    }
     }
 
     while (*taupe_visible == 0) {
@@ -59,6 +59,7 @@ void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *tau
         *taupe_y = valeurs[rand() % 3];
         *taupe_visible = 1;
         *taupe_timer = 0;  // Réinitialise le compteur lorsque la taupe réapparaît
+
     }
 }
 
@@ -86,7 +87,7 @@ void Taupe(){
 
     int score = 0;
     srand(time(NULL));
-    int taupe_visible = 0;
+    int taupe_visible = 1;
     int taupe_timer = 0;
     int taupe_delay= 1000;
     int taupe_width = 70;
@@ -108,6 +109,8 @@ void Taupe(){
     int taupe_x_main =(rand() % 6) * division;
     int taupe_y_main = valeurs[rand() % 3];
     taupe_y = valeurs[rand() % 3];
+    clock_t start_time = clock();
+    int elapsed_time = 0;
 
     blit(menu_background, buffer, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     rectfill(buffer, bouton_x, play_bouton_y, bouton_x + bouton_width, play_bouton_y + bouton_height, makecol(255, 255, 255));
@@ -122,12 +125,14 @@ void Taupe(){
     show_mouse(screen);
 
 
-    clock_t start_time = clock();
     // Attente de l'appui sur un bouton
     while(!key[KEY_ESC])
     {
-        int elapsed_time = 0;
         elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
+        if (elapsed_time >= 60) {
+            break;
+        }
+
 
         // Vérification si une minute s'est écoulée
         if (elapsed_time >= 60) {
@@ -139,8 +144,14 @@ void Taupe(){
                 // L'utilisateur a cliqué sur le bouton "Jouer"
                 taupe_y = taupe_y_main;
                 taupe_x = taupe_x_main;
+                elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
+                if (elapsed_time >= 60) {
+                    break;}
 
-                game_jouer(jeu_background, taupes, buffer, &taupe_visible, &taupe_timer, score,  taupe_width, taupe_height, taupe_delay, valeurs, division, &taupe_x_main,&taupe_y_main, taupe_rester ,elapsed_time);
+                game_jouer(jeu_background, taupes, buffer, &taupe_visible, &taupe_timer, &score,  taupe_width, taupe_height, taupe_delay, valeurs, division, &taupe_x_main,&taupe_y_main, taupe_rester ,elapsed_time);
+                clear_bitmap(buffer);
+                textprintf_ex(buffer, font, 10, 10, makecol(255, 255, 255), -1, "Score: %d", score);
+                blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             }
         }
         else if (mouse_b && mouse_x >= bouton_x && mouse_x <= bouton_x + bouton_width && mouse_y>=regles_bouton_y && mouse_y<= regles_bouton_y + bouton_height)

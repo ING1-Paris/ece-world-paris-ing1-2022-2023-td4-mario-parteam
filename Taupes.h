@@ -11,7 +11,7 @@
 #define TAUPE_HEIGHT 60
 #define NUM_TROUS 6
 void regles_taupes(BITMAP* regles_background);
-void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *taupe_visible, int *taupe_timer, int score, int taupe_width, int taupe_height, int taupe_delay, int valeurs[], int division, int *taupe_x, int *taupe_y, int taupe_rester, int elapsed_time);
+void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *taupe_visible, int *taupe_timer, int *score, int taupe_width, int taupe_height, int taupe_delay, int valeurs[], int division, int *taupe_x, int *taupe_y, int taupe_rester, int elapsed_time);
 void Taupe();
 
 #endif //MARIO_PARTEAM_V1_TAUPES_H
