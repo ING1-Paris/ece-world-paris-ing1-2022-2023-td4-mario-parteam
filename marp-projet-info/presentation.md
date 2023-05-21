@@ -190,16 +190,27 @@ Cependant il doit s'éloigner de la bombe avant qu'elle explose, du feu, sinon i
 classDiagram
     class t_joueur
     t_joueur : int x, y
+
     t_joueur : int feu
+
     t_joueur : int nb_bombes
+
     t_joueur : int vie
+
     t_joueur : BITMAP *front[ANIMATION]
+
     t_joueur : BITMAP *back[ANIMATION]
+
     t_joueur : BITMAP *side[ANIMATION]
+
     class t_bombe
+
     t_bombe : int x, y
+
     t_bombe : int matrice[X][Y]
+
     t_bombe : time_t creation_time
+    
     t_bombe : int explosion, explosion_now
 </div>
 
@@ -536,7 +547,7 @@ flowchart LR
 _class: lead
 -->
 
-# Les slides suivantes ne seront pas présentées oralement lors de la soutenance mais doivent figurer dans la présentation. Nous les survolerons rapidement.
+# Merci de votre attention
 
 ---
 
@@ -584,13 +595,11 @@ _class: lead
 
 # Investissement
 
-Si vous deviez vous répartir des points, comment feriez-vous ?
-
 <div class="mermaid">
 %%{init: {'theme':'neutral'}}%%
 pie showData
-    "Raphaël" : 40
-    "Apolline" : 40
+    "Raphaël" : 50
+    "Apolline" : 30
     "Thibaut" : 20
     "Laure" : 10
 </div>
@@ -604,8 +613,8 @@ pie showData
 | Guitar Hero | 100% | - |
 | Bomberman | 100% | - |
 | Taupes | 100% | Actualisation des valeurs randomisées |
-| Pierre feuille ciseaux | 95% | - |
-| Tir aux ballons | 50% | - |
+| Pierre feuille ciseaux | 95% | Récursivité pour relancer une partie + afficher l'écran de fin |
+| Tir aux ballons | 50% | Problème avec le tableau de ballons |
 | Traversée de rivière | 50% |-|
 
 Vous pouvez faire ce tableau sur plusieurs slides en dupliquant l'en-tête.
@@ -616,12 +625,6 @@ Vous pouvez faire ce tableau sur plusieurs slides en dupliquant l'en-tête.
 _class: lead
 -->
 # Quelques éléments que vous pouvez utiliser à votre guise dans votre présentation
-
----
-
-# Schémas et Graphes
-
-Vous pouvez utiliser [Mermaid.js](https://mermaid.js.org/) pour générer des schémas. Regardez la documentation.
 
 ---
 
@@ -638,20 +641,3 @@ for(int i = 0; i < 5; i++) {
 
 
 ---
-
-# Emojis
-
-https://gist.github.com/rxaviers/7360908
-
----
-
-# Thème 
-
-Vous pouvez personnaliser l'affichage de votre présentation avec le langage CSS en modifiant le fichier `theme.css`.
-
----
-
-# Export PDF
-
-Depuis récemment, l'export (**`Export Slide Deck...`**) en PDF oublie parfois des éléments. 
-Si c'est le cas, nous vous conseillons d'exporter en fichier PowerPoint (pptx), puis de l'exporter en PDF depuis PowerPoint.
