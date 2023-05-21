@@ -9,6 +9,7 @@
 #include "guitarhero.h"
 #include "bomberman.h"
 #include "riviere.h"
+#include "TirAuxBallons.h"
 
 void allegroinit();
 
