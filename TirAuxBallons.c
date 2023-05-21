@@ -128,7 +128,7 @@ void tirballons()
     BITMAP *sprite; // image de l'acteur
     page= create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(page);
-    decor=load_bitmap("images/fondkirby.bmp",NULL);
+    decor=load_bitmap("images/fondkirby2.bmp",NULL);
     sprite=load_bitmap("images/Ballon55.bmp",NULL);
 
     while (!key[KEY_ESC]){
