@@ -57,23 +57,25 @@ void jouer(BITMAP *jeu, BITMAP *buffer, int player_choice,int computer_choice, B
         rest(2000);
         while (!key[KEY_ESC]){
             if (player_choice == computer_choice) {
+                clear(buffer);
+                blit(game_over, buffer, 0,0,0,0, SCREEN_W, SCREEN_H);
                 stretch_sprite(game_over,perdu2, 1020, 500, 100,200);
                 textout_centre_ex(game_over, font, "Egalité, tu as de la chance...", SCREEN_W/2, 255, makecol(255, 255, 255),-1);
                 blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             } else if ((player_choice == ROCK && computer_choice == SCISSORS) ||
                        (player_choice == PAPER && computer_choice == ROCK) ||
                        (player_choice == SCISSORS && computer_choice == PAPER)) {
-                nombre_win++;
+                clear(buffer);
+                blit(game_over, buffer, 0,0,0,0, SCREEN_W, SCREEN_H);
                 stretch_sprite(game_over,perdu3, 1020, 500, 100,200);
                 textout_centre_ex(game_over, font, "Je n'y crois pas tu as gagné", SCREEN_W/2, 255, makecol(255, 255, 255),-1);
                 blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             } else {
-
-
-                blit(game_over, game_over, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                clear(buffer);
+                blit(game_over, buffer, 0,0,0,0, SCREEN_W, SCREEN_H);
                 stretch_sprite(game_over,perdu1, 1020, 500, 100,200);
                 textout_centre_ex(game_over, font, "Facile !", SCREEN_W/2, 255, makecol(255, 255, 255), -1);
-                //blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                blit(game_over, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
             }
 
