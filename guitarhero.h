@@ -37,8 +37,8 @@ void initBoutons(t_boutons *boutons);
 void initScore(t_score *score);
 void animationBoutons(t_boutons *boutons, BITMAP *page);
 void detectScore(t_score *score, t_boutons *boutons,BITMAP *page, bool touchePress[5], int toucheIsPress[5]); // appeler animationBoutons dans cette fonction
-void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5],double *volume); //fonction du jeu
-int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2, int *l,double *volume);
+void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5]); //fonction du jeu
+int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2);
 
 void Gh();
 
