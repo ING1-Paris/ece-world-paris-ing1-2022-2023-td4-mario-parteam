@@ -5,7 +5,7 @@ int main() {
     //map();
     //Gh();//FINIR LA MAP + CONDITION DE VICTOIRE
     //Bomberman();
-    lejeu();
+    //lejeu();
     return 0;
 }
 END_OF_MAIN()
