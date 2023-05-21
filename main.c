@@ -2,10 +2,11 @@
 
 int main() {
     allegroinit();
-    //map();
+    map();
     //Gh();//FINIR LA MAP + CONDITION DE VICTOIRE
     //Bomberman();
-    lejeu();
+    //lejeu();
+    //tirballons();
     return 0;
 }
 END_OF_MAIN()

@@ -97,6 +97,12 @@ build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/tickets.c.
   OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
   OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
 
+build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/TirAuxBallons.c.obj: C_COMPILER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug C$:/Users/Scotch/Documents/Algo$ cours/ece-world-paris-ing1-2022-2023-td4-mario-parteam/TirAuxBallons.c || cmake_object_order_depends_target_ece-world-paris-ing1-2022-2023-td4-mario-parteam
+  DEP_FILE = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir\TirAuxBallons.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu99
+  OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+  OBJECT_FILE_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ece-world-paris-ing1-2022-2023-td4-mario-parteam
@@ -105,7 +111,7 @@ build CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/tickets.c.
 #############################################
 # Link the executable ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe
 
-build ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe: C_EXECUTABLE_LINKER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/main.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/Menu.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/guitarhero.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/bomberman.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/supersimon.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/map.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/riviere.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/tickets.c.obj
+build ece-world-paris-ing1-2022-2023-td4-mario-parteam.exe: C_EXECUTABLE_LINKER__ece-world-paris-ing1-2022-2023-td4-mario-parteam_Debug CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/main.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/Menu.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/guitarhero.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/bomberman.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/supersimon.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/map.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/riviere.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/tickets.c.obj CMakeFiles/ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir/TirAuxBallons.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -lalleg44  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ece-world-paris-ing1-2022-2023-td4-mario-parteam.dir
