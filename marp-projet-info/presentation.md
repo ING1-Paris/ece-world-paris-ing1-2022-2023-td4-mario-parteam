@@ -509,15 +509,6 @@ flowchart LR
     tirballons --> tirSouris
 </div>
 
-
----
-
-![bg right:40%](images/)
-
-# Tir aux ballons
-
-### Logigramme
-
 ---
 
 # Bilan collectif
@@ -596,29 +587,7 @@ pie showData
 | Taupes | 100% | Actualisation des valeurs randomisées |
 | Pierre feuille ciseaux | 95% | Récursivité pour relancer une partie + afficher l'écran de fin |
 | Tir aux ballons | 50% | Problème avec le tableau de ballons |
-| Traversée de rivière | 50% |-|
-
-Vous pouvez faire ce tableau sur plusieurs slides en dupliquant l'en-tête.
-
----
-
-<!--
-_class: lead
--->
-# Quelques éléments que vous pouvez utiliser à votre guise dans votre présentation
-
----
-
-# Slide avec du code
-
-
-```C
-for(int i = 0; i < 5; i++) {
-    printf("%d ", i);
-}
-```
-
-> 0 1 2 3 4 
+| Traversée de rivière | 50% | Problème d'affichage du personnage |
 
 
 ---
