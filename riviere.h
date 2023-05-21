@@ -18,6 +18,11 @@ typedef struct lesrondins{
     int tx,ty;  // largeur et hauteur
 }t_rondins;
 
+//typedef struct leperso{
+//    int x,y;    //position du coin supérieur gauche
+//
+//}t_perso;
+
 void lejeu();
 
 t_rondins * creerRONDINS(int etat, int x, int y, int dx, int tmpdx);
@@ -26,5 +31,7 @@ void actualiserRondins(t_rondins *rondins);
 void actualiserlesrondins(t_rondins * tab[RONDINS]);
 void dessinerRondins(BITMAP *bmp, t_rondins *rondins, BITMAP* lerondin);
 void dessinerlesrondins(BITMAP *bmp,t_rondins * tab[RONDINS], BITMAP *lerondin);
+//void mouvPerso(t_perso* monperso, BITMAP *page, BITMAP *perso[4]);
+//void victoire(t_perso* monperso);
 
 #endif //MARIO_PARTEAM_V1_RIVIERE_H
