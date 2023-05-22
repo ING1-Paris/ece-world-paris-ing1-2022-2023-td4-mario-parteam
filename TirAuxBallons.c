@@ -130,10 +130,12 @@ void tirballons()
     clear_bitmap(page);
     decor=load_bitmap("images/fondkirby2.bmp",NULL);
     sprite=load_bitmap("images/Ballon55.bmp",NULL);
+    install_mouse();
+    show_mouse(screen);
 
     while (!key[KEY_ESC]){
         // effacer buffer en apliquant decor
-        blit(decor,page,0,0,0,0, SCREEN_W,SCREEN_H);
+        stretch_blit(decor, page, 0, 0,decor->w,decor->h,0,0,(page->w),(page->h));
         mesActeurs= actualiserActeur(mesActeurs);
         dessinerActeur(page,sprite, mesActeurs);
         tirSouris(mesActeurs, sprite);

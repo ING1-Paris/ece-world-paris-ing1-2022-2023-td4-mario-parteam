@@ -14,8 +14,8 @@ void init_perso(t_perso *perso);
 void dep_carte(BITMAP *page,BITMAP *decor,t_perso *perso,int screenx, int screeny);*/
 
 
-#define MAP_W 2048
-#define MAP_H 1167
+#define MAP_W 2248
+#define MAP_H 1277
 
 #define ZOOM_FACTOR 2
 
@@ -23,8 +23,8 @@ void dep_carte(BITMAP *page,BITMAP *decor,t_perso *perso,int screenx, int screen
 #define PLAYER_H 32
 #define PLAYER_ANIM_COUNT 3
 
-#define PLAYER_START_X 700
-#define PLAYER_START_Y 500
+#define PLAYER_START_X 100
+#define PLAYER_START_Y 780
 
 #include "guitarhero.h"
 #include "bomberman.h"

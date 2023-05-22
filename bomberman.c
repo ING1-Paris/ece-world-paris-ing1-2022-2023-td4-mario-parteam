@@ -540,7 +540,8 @@ void affichage(int matrice[X][Y],t_joueur perso[],BITMAP *objects[NBOBJECTS],BIT
     blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 }
 
-int Meenu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2){
+int Meenu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2,SAMPLE *MenuSound){
+    play_sample(MenuSound,255,122,1000,0);
     if(key[KEY_DOWN] && getpixel(screen,250,50)== makecol(0,0,0)){
         *x1=250;
         *x2=1200;
@@ -616,7 +617,7 @@ void Bomberman(){
 
     page= create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(page);
-    MenuMusic= load_sample("Music/Lost Woods - The Legend of Zelda Ocarina Of Time.wav");
+    MenuMusic= load_sample("Music/Lost Woods The Legend of Zelda Ocarina Of Time.wav");
     Object[0]= load_bitmap("images/Vide.bmp",NULL);
     Object[1]= load_bitmap("images/Mur.bmp",NULL);
     Object[2]= load_bitmap("images/Block.bmp",NULL);
@@ -640,12 +641,11 @@ void Bomberman(){
     init_bombe(bombej1);
     init_bombe(bombej2);
     affichage(matrice,perso,Object,page,Stage,mortj1,mortj2,u1,d1,r1,l1,u2,d2,r2,l2);
-    play_sample(MenuMusic,255,122,1000,1);
 
-    while(Meenu(page,Background,&x1,&x2,&y1,&y2)!=2 && Meenu(page,Background,&x1,&x2,&y1,&y2)!=1){
-        Meenu(page,Background,&x1,&x2,&y1,&y2);
+    while(Meenu(page,Background,&x1,&x2,&y1,&y2,MenuMusic)!=2 && Meenu(page,Background,&x1,&x2,&y1,&y2,MenuMusic)!=1){
+        Meenu(page,Background,&x1,&x2,&y1,&y2,MenuMusic);
     }
-    if(Meenu(page,Background,&x1,&x2,&y1,&y2)==1){
+    if(Meenu(page,Background,&x1,&x2,&y1,&y2,MenuMusic)==1){
         destroy_sample(MenuMusic);
         affichage(matrice,perso,Object,page,Stage,mortj1,mortj2,u1,d1,r1,l1,u2,d2,r2,l2);
         rest(1000);

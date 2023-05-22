@@ -50,7 +50,7 @@ void game_jouer(BITMAP *jeu_background, BITMAP* taupes, BITMAP *buffer, int *tau
             blit(jeu_background, buffer, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
             blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             break;
-    }
+        }
     }
 
     while (*taupe_visible == 0) {
@@ -151,7 +151,11 @@ void Taupe(){
                 game_jouer(jeu_background, taupes, buffer, &taupe_visible, &taupe_timer, &score,  taupe_width, taupe_height, taupe_delay, valeurs, division, &taupe_x_main,&taupe_y_main, taupe_rester ,elapsed_time);
                 clear_bitmap(buffer);
                 textprintf_ex(buffer, font, 10, 10, makecol(255, 255, 255), -1, "Score: %d", score);
+                show_mouse(buffer);
+
                 blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                show_mouse(screen);
+
             }
         }
         else if (mouse_b && mouse_x >= bouton_x && mouse_x <= bouton_x + bouton_width && mouse_y>=regles_bouton_y && mouse_y<= regles_bouton_y + bouton_height)
