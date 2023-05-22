@@ -51,21 +51,21 @@ Nous avons choisis le thème Nintendo afin d'avoir assez de sprites.
 
 ---
 
-# Map `1/2`
+# Map
 
-*Réalisée par : **Raphaël**, **Apolline**.*
+*Réalisée par : **Raphaël** et **Apolline**.*
 ![bg right:78% 96%](./images/map.bmp)
 
 ---
 
 # Organisation des jeux
 
-Précisez comment les jeux sont organisés ? Sont-ils dans des fichiers séparés ? Dans des dossiers ? Sont-ils éparpillés dans plusieurs fichiers ?
 
-Quels paramètres prennent les jeux ?  La file d'événement par exemple ? Ou est-ce que chaque jeu crée sa propre file ?
+-Les jeux sont dans des fichiers séparés. 
+-Chaque jeu a son fichier et son header. L'accès aux jeux s'effectue par la map.
+-(Chaque jeu devait prendre en paramètre le joueur pour les stats et les tickets.)
+Les bâtiments ont une couleur associée: on entre dans un bâtiment lorsque la couleur est détectée (collision).
 
-Comment on lance un jeu et comment on revient à la carte à la fin de la partie ?
-Comment le classement est-il mis à jour ?
 
 ---
 
@@ -75,14 +75,7 @@ Comment le classement est-il mis à jour ?
 
 *Réalisé par : **Raphaël***
 
-Décrire le fonctionnement du jeu dans les grandes lignes. Comment vous l'avez conçu.
-- Les canards vont de la droite à la gauche.
-- Lorsqu'ils ont disparu, ils ont 1 chance sur 50 de réapparaitre à droite.
-- Les canards vont à une vitesse différente (tirée aléatoirement).
-- La collision des canards est détectée.
-- etc.
-
-<sup>:bulb: Remplacez les images par des captures d'écran de votre jeu.</sup>
+- Des étoiles tombent, 
 
 ---
 
@@ -90,34 +83,9 @@ Décrire le fonctionnement du jeu dans les grandes lignes. Comment vous l'avez c
 
 # Guitar Hero
 
-Détail
-
 ### Structures
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-classDiagram
-    class t_boutons
-    t_boutons : BITMAP *vert[ANIMATION]
-    t_boutons : BITMAP *rouge[ANIMATION]
-    t_boutons : BITMAP *jaune[ANIMATION]
-    t_boutons : BITMAP *bleu[ANIMATION]
-    t_boutons : BITMAP *orange[ANIMATION]
-    t_boutons : char clavier[5]
-    t_boutons : int xboutons[5]
-    t_boutons : int yboutons[5]
-    t_boutons : int color[5]
-    t_boutons : int txb, tyb
-    class t_score
-    t_score : long int score
-    t_score : int xscore, yscore
-    t_score : int combo
-    t_score : int xcombo,ycombo
-    t_score : int color
-    
-</div>
-
-
+![w:500 h:400](images/structgh.PNG)
 
 ---
 
@@ -132,7 +100,7 @@ classDiagram
 
 ---
 
-![bg right:40%](images/)
+![bg right:70% 98%](images/logibomberman.png)
 
 # Guitar Hero
 
@@ -180,7 +148,7 @@ Cependant il doit s'éloigner de la bombe avant qu'elle explose, du feu, sinon i
 
 # Traversée de rivière
 
-*Réalisé par : **Apolline***
+*Réalisée par : **Apolline***
 
 Le but du jeu est comme son nom l'indique de traverser la rivière en sautant sur les bûches.
 - Les bûches vont de la gauche vers la droite.
@@ -195,49 +163,18 @@ Le but du jeu est comme son nom l'indique de traverser la rivière en sautant su
 
 # Traversée de rivière
 
-Pour chaque jeu (bien détailler au moins un jeu par personne), précisez les structures de données (structures importantes, tableaux importants, listes chainées...) et les fonctions importantes (avec leur prototype).
 
 ### Structures
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-classDiagram
-    class lesrondins
-    lesrondins : int x, y
-    lesrondins : int dx
-    lesrondins : int tmpdx
-    lesrondins : int cptdx
-    lesrondins : int tx, ty
-    lesrondins : int etat
-    lesrondins : int rayons
-    
-    class Canne
-    Canne : int x, y
-    Canne : Canard* canard
-</div>
-
-
+![w:200 h:400](images/structriv.png)
 
 ---
 
-![bg right:40%](images/)
+![bg right:60% 90%](images/appelriv.PNG)
 
 # Traversée de rivière
 
 ### Graphe d'appel
-
-<br>
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-flowchart LR
-    lejeu --> remplirlesrondins
-    remplirlesrondins --> creerRONDINS
-    lejeu --> actualiserlesrondins
-    actualiserlesrondins --> actualiserRondins
-    lejeu --> dessinerlesrondins
-    dessinerlesrondins --> dessinerRondins
-</div>
-
 
 ---
 
@@ -255,54 +192,18 @@ flowchart LR
 
 *Réalisé par : **Thibaut***
 
-Décrire le fonctionnement du jeu dans les grandes lignes. Comment vous l'avez conçu.
-- Les canards vont de la droite à la gauche.
-- Lorsqu'ils ont disparu, ils ont 1 chance sur 50 de réapparaitre à droite.
-- Les canards vont à une vitesse différente (tirée aléatoirement).
-- La collision des canards est détectée.
-- etc.
-
-<sup>:bulb: Remplacez les images par des captures d'écran de votre jeu.</sup>
+-But : Le joueur doit toucher le plus de taupes possibles avant la fin du temps imparti.
+-La partie dure une minute.
 
 ---
 
-![bg right:40%](images/taupe.png)
-
-# Taupes
-
-Pour chaque jeu (bien détailler au moins un jeu par personne), précisez les structures de données (structures importantes, tableaux importants, listes chainées...) et les fonctions importantes (avec leur prototype).
-
-### Structures
-
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-classDiagram
-    class Canard
-    Canard : int x, y
-    Canard : int vitesse
-    class Canne
-    Canne : int x, y
-    Canne : Canard* canard
-</div>
-
-
-
----
-
-![bg right:40%](images/)
+![bg right:60% 80%](images/appeltaupe.png)
 
 # Taupes
 
 ### Graphe d'appel
 
-<br>
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-flowchart LR
-    Taupe --> game_jouer
-    Taupe --> regles_taupes
-</div>
 
 
 ---
@@ -322,22 +223,14 @@ flowchart LR
 
 *Réalisé par : **Thibaut***
 
-Décrire le fonctionnement du jeu dans les grandes lignes. Comment vous l'avez conçu.
-- Les canards vont de la droite à la gauche.
-- Lorsqu'ils ont disparu, ils ont 1 chance sur 50 de réapparaitre à droite.
-- Les canards vont à une vitesse différente (tirée aléatoirement).
-- La collision des canards est détectée.
-- etc.
-
-<sup>:bulb: Remplacez les images par des captures d'écran de votre jeu.</sup>
+Le joueur se retrouve dans un ring afin de se "battre" avec l'ordinateur. 
+Il choisi son coup avant de découvrir ce que le hasard à choisi pour l'ordinateur.
 
 ---
 
 ![bg right:40%](images/pierre.png)
 
 # Pierre Feuille Ciseaux
-
-Pour chaque jeu (bien détailler au moins un jeu par personne), précisez les structures de données (structures importantes, tableaux importants, listes chainées...) et les fonctions importantes (avec leur prototype).
 
 
 ### Structures
@@ -348,20 +241,12 @@ PAS DE STRUCTURES ??
 
 ---
 
-![bg right:40%](images/)
+![bg right:60% 80%](images/appelpfc.PNG)
 
 # Pierre Feuille Ciseaux
 
 ### Graphe d'appel
 
-<br>
-
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-flowchart LR
-    PPC --> jouer
-    PPC --> regles
-</div>
 
 
 ---
@@ -391,40 +276,25 @@ flowchart LR
 
 # Tir aux ballons
 
-Pour chaque jeu (bien détailler au moins un jeu par personne), précisez les structures de données (structures importantes, tableaux importants, listes chainées...) et les fonctions importantes (avec leur prototype).
-
 ### Structures
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-classDiagram
-    class t_acteur
-    t_acteur : int x, y
-    t_acteur : int dx, dy
-    t_acteur : int tx, ty
-    
-</div>
+![w:170 h:300](images/structballon.png)
 
 ---
-
+![bg right:60% 90%](images/appelballon.png)
 # Tir aux ballons
 
 ### Graphe d'appel
 
-<br>
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-flowchart LR
-    tirballons --> remplirTabActeurs
-    remplirTabActeurs -->creerActeurs
-    tirballons --> actualiserTabActeurs
-    actualiserTabActeurs --> actualiseActeur
-    actualiserTabActeurs --> collisionActeurs
-    tirballons --> dessinerTabActeurs
-    dessinerTabActeurs --> dessinerActeur
-    tirballons --> tirSouris
-</div>
+---
+
+![bg right:50% 28%](images/logiballon.png)
+
+# Tir aux Ballons
+
+### Logigramme
+
 
 ---
 
@@ -483,27 +353,18 @@ _class: lead
 ---
 
 # Investissement
-
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-pie showData
-    "Raphaël" : 50
-    "Apolline" : 30
-    "Thibaut" : 20
-    "Laure" : 10
-</div>
+![auto ](images/repartition.png)
 
 ---
-
 # Récapitulatif des jeux
 
 | Jeu | Avancement | Problèmes / reste |
 | --- | --- | --- |
 | Guitar Hero | 100% | - |
 | Bomberman | 100% | - |
-| Taupes | 100% | Actualisation des valeurs randomisées |
+| Taupes | 100% ||
 | Pierre feuille ciseaux | 95% | Récursivité pour relancer une partie + afficher l'écran de fin |
-| Tir aux ballons | 50% | Problème avec le tableau de ballons |
+| Tir aux ballons | 50% | Problème avec le tableau de ballons -> impact sur tout le reste du programme|
 | Traversée de rivière | 50% | Problème d'affichage du personnage |
 
 
