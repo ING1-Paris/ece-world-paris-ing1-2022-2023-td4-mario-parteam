@@ -2,13 +2,8 @@
 
 int main() {
     allegroinit();
-    //map();
-    //Gh();//FINIR LA MAP + CONDITION DE VICTOIRE
-    //Bomberman();
-    //lejeu();
-    //tirballons();
-    //Taupe();
-    //PPC();
+        map();
+
     return 0;
 }
 END_OF_MAIN()

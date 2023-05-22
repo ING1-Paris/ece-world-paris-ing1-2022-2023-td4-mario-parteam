@@ -13,26 +13,26 @@ BITMAP * load_bitmap_check(char *nomImage);
 void init_perso(t_perso *perso);
 void dep_carte(BITMAP *page,BITMAP *decor,t_perso *perso,int screenx, int screeny);*/
 
-typedef struct perso{
-    int x,y;
-    int dx,dy;
-    int prex,prey;
-    int tx,ty;
-    BITMAP *front[3];
-    BITMAP *back[3];
-    BITMAP *side[3];
-}t_perso;
 
-typedef struct map{
-    int x,y;
-    int dx,dy;
-    BITMAP *map;
-    BITMAP *collision;
-}t_map;
-BITMAP * load_bitmap_check(char *nomImage);
-void initialisation_perso(t_perso *perso);
-void deplacement(t_perso *perso,int *u,int *d,int *r,int *l,int *key_up,int *key_down, int *key_right,int *key_left);
-void deplacementmap(BITMAP *map,t_perso *perso, int screenx,int screeny);
+#define MAP_W 2048
+#define MAP_H 1167
+
+#define ZOOM_FACTOR 2
+
+#define PLAYER_W 32
+#define PLAYER_H 32
+#define PLAYER_ANIM_COUNT 3
+
+#define PLAYER_START_X 700
+#define PLAYER_START_Y 500
+
+#include "guitarhero.h"
+#include "bomberman.h"
+#include "riviere.h"
+#include "TirAuxBallons.h"
+#include "Taupes.h"
+#include "PPC.h"
+
 void map();
 
 

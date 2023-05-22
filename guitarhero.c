@@ -130,7 +130,7 @@ void detectScore(t_score *score, t_boutons *boutons,BITMAP *page, bool touchePre
 void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page,int ystage, bool touchePress[5]){ //rajouter une condition quand un autre stage sera créé
     int toucheIsPress[5] = {0};
     install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,NULL);
-    SAMPLE *Kirby= load_sample("Music/Gourmet Race - Kirby： Super Star.wav");
+    SAMPLE *Kirby= load_sample("Music/Gourmet Race - Kirby Super Star.wav");
     //vol=255*(1/(*volume));
     BITMAP *buffer;
     BITMAP *background;

@@ -616,7 +616,7 @@ void Bomberman(){
 
     page= create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(page);
-    MenuMusic= load_sample("Music/Lost Woods - The Legend of Zelda： Ocarina Of Time.wav");
+    MenuMusic= load_sample("Music/Lost Woods - The Legend of Zelda Ocarina Of Time.wav");
     Object[0]= load_bitmap("images/Vide.bmp",NULL);
     Object[1]= load_bitmap("images/Mur.bmp",NULL);
     Object[2]= load_bitmap("images/Block.bmp",NULL);
@@ -652,7 +652,7 @@ void Bomberman(){
         install_sound(DIGI_AUTODETECT,MIDI_AUTODETECT,NULL);
         SAMPLE *GerudoValley;
         SAMPLE *Victory;
-        GerudoValley= load_sample("Music/Gerudo Valley - The Legend of Zelda： Ocarina Of Time.wav");
+        GerudoValley= load_sample("Music/Gerudo Valley - The Legend of Zelda Ocarina Of Time.wav");
         play_sample(GerudoValley,255,122,1000,1);
 
         while(!key[KEY_ESC] && perso[0].vie!=0 && perso[1].vie!=0){

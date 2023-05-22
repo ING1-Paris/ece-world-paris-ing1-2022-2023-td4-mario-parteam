@@ -5,189 +5,127 @@
 //sources : https://fercoq.bitbucket.io/allegro/Alleg_C4/3_1_scrolling_sur_un_decor.html
 #include "map.h"
 
-/*BITMAP *load_bitmap_check(char *nomImage){
-    BITMAP *bmp;
-    bmp=load_bitmap(nomImage,NULL);
-    if (!bmp)
-    {
-        allegro_message("pas pu trouver %s",nomImage);
-        exit(EXIT_FAILURE);
-    }
-    return bmp;
-}*/
-
-void deplacement(t_perso *perso,int *u,int *d,int *r,int *l,int *key_up,int *key_down, int *key_right,int *key_left){
-    *key_right=*key_left=*key_up=*key_down=0;
-    if(key[KEY_RIGHT]){
-        perso->dx=5;
-        perso->x+=perso->dx;
-        *r+=1;
-        *r%=3;
-        *key_right=1;
-    }
-    if(key[KEY_UP]){
-        perso->dy=5;
-        perso->y-=perso->dy;
-        *u+=1;
-        *u%=3;
-        *key_up=1;
-    }
-    if(key[KEY_LEFT]){
-        perso->dx=5;
-        perso->x-=perso->dx;
-        *l+=1;
-        *l%=3;
-        *key_left=1;
-    }
-    if(key[KEY_DOWN]){
-        perso->dy=5;
-        perso->y+=perso->dy;
-        *d+=1;
-        *d%=3;
-        *key_down=1;
-    }
-
-    if(perso->x<0)
-        perso->x=0;
-    if(perso->y<0)
-        perso->y=0;
-
-}
 
 
-void map(){
-
+void map() {
     BITMAP *map;
-    BITMAP *page;
-    t_perso *perso;
+    BITMAP *player[4][PLAYER_ANIM_COUNT];
+    BITMAP *buffer;
+    BITMAP *detect;
 
-    int screenx, screeny;
-    char buf[80];
-    int u,d,r,l;
-    int key_up,key_down,key_right,key_left;
+    int map_x = PLAYER_START_X * ZOOM_FACTOR;
+    int map_y = PLAYER_START_Y * ZOOM_FACTOR;
+    int player_x = SCREEN_W / 3;
+    int player_y = SCREEN_H / 3;
 
-    page= create_bitmap(SCREEN_W,SCREEN_H);
+    int player_dir = 0; // 0 - down, 1 - up, 2 - right, 3 - left
+    int player_frame = 0;
+    int player_frame_counter = 0;
+    int out=0;
 
-    clear_bitmap(page);
+    map = load_bitmap("images/LAMAP1.bmp", NULL);
+    detect = load_bitmap("images/COLLISION1.bmp", NULL);
 
-    map= load_bitmap_check("images/LAMAP.bmp");
 
-    perso=(t_perso *) malloc(sizeof (t_perso));
+    buffer = create_bitmap(SCREEN_W, SCREEN_H);
 
-    for(int i=0;i<3;i++){
-        sprintf(buf,"images/red-front%d.bmp",i);
-        perso->front[i] = load_bitmap_check(buf);
+    for (int i = 0; i < PLAYER_ANIM_COUNT; i++) {
+        char path[40];
+        sprintf(path, "images/red-front%d.bmp", i);
+        player[0][i] = load_bitmap(path, NULL);
+
+        sprintf(path, "images/red-back%d.bmp", i);
+        player[1][i] = load_bitmap(path, NULL);
+
+        sprintf(path, "images/red-side%d.bmp", i);
+        player[2][i] = load_bitmap(path, NULL);
+        player[3][i] = create_bitmap(PLAYER_W, PLAYER_H);
+        clear_to_color(player[3][i], makecol(255, 0, 255));
+        draw_sprite_h_flip(player[3][i], player[2][i], 0, 0);
     }
-    for(int j=0;j<3;j++){
-        sprintf(buf,"images/red-back%d.bmp",j);
-        perso->back[j] = load_bitmap_check(buf);
-    }
-    for(int k=0;k<3;k++){
-        sprintf(buf,"images/red-side%d.bmp",k);
-        perso->side[k] = load_bitmap_check(buf);
-    }
 
-
-    perso->x=0;
-    perso->y=0;
-    perso->dx=0;
-    perso->dy=0;
-    perso->tx=16;
-    perso->ty=21;
-
-    u=d=r=l=0;
-    draw_sprite(page,perso->front[0],perso->x,perso->y);
-
-    while(!key[KEY_ESC]){
-        if (perso->x - screenx > SCREEN_W /2) {
-            screenx = perso->x - SCREEN_W /2;
+    while (!key[KEY_ESC]) {
+        if (key[KEY_LEFT]) {
+            player_dir = 3;
+            if ((map_x > 0 && player_x == SCREEN_W / 3) || player_x > 0) {
+                if (map_x > 0) map_x -= 5 * ZOOM_FACTOR;
+                else player_x -= 5;
+            }
         }
-        if (perso->x - screenx < SCREEN_W /2) {
-            screenx = perso->x - SCREEN_W /2;
+        if (key[KEY_RIGHT]) {
+            player_dir = 2;
+            if ((map_x + SCREEN_W < MAP_W * ZOOM_FACTOR && player_x == SCREEN_W / 3) || player_x < SCREEN_W - PLAYER_W) {
+                if (map_x + SCREEN_W < MAP_W * ZOOM_FACTOR) map_x += 5 * ZOOM_FACTOR;
+                else player_x += 5;
+            }
         }
-
-        if (perso->y - screeny > SCREEN_H /2) {
-            screeny = perso->y - SCREEN_H /2;
+        if (key[KEY_UP]) {
+            player_dir = 1;
+            if ((map_y > 0 && player_y == SCREEN_H / 3) || player_y > 0) {
+                if (map_y > 0) map_y -= 5 * ZOOM_FACTOR;
+                else player_y -= 5;
+            }
         }
-        if (perso->y - screeny < SCREEN_H /2) {
-            screeny = perso->y - SCREEN_H /2;
+        if (key[KEY_DOWN]) {
+            player_dir = 0;
+            if ((map_y + SCREEN_H < MAP_H * ZOOM_FACTOR && player_y == SCREEN_H / 3) || player_y < SCREEN_H - PLAYER_H) {
+                if (map_y + SCREEN_H < MAP_H * ZOOM_FACTOR) map_y += 5 * ZOOM_FACTOR;
+                else player_y += 5;
+            }
         }
 
-        if (screenx < 0) {
-            screenx = 0;
-        }
-        if (screenx > map->w ) {
-            screenx = map->w;
-        }
-
-        if (screeny < 0) {
-            screeny = 0;
-        }
-        if (screeny > map->h ) {
-            screeny = map->h;
+        player_frame_counter++;
+        if (player_frame_counter > 10) {
+            player_frame_counter = 0;
+            player_frame++;
+            if (player_frame >= PLAYER_ANIM_COUNT) player_frame = 0;
         }
 
-        stretch_blit(map,page,screenx,screeny,SCREEN_W/3,SCREEN_H/3,0,0,SCREEN_W,SCREEN_H);
-        //blit(map,page,screenx,screeny,0,0,SCREEN_W,SCREEN_H);
-        deplacement(perso,&u,&d,&r,&l,&key_up,&key_down,&key_right,&key_left);
-        if(key_up>0){
-            draw_sprite(page,perso->back[u],perso->x,perso->y);
-        }else if(key_down>0){
-            draw_sprite(page,perso->front[d],perso->x,perso->y);
-        }else if(key_left>0){
-            draw_sprite(page,perso->side[l],perso->x,perso->y);
-        }else if(key_right>0){
-            draw_sprite_h_flip(page,perso->side[r],perso->x,perso->y);
+        // get color under player
+        int color_under_player = getpixel(detect, (map_x + player_x) / ZOOM_FACTOR, (map_y + player_y) / ZOOM_FACTOR);
+        if (color_under_player == makecol(64,6,45)) {
+            tirballons();
+            map_x = PLAYER_START_X * ZOOM_FACTOR;
+            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+        } else if (color_under_player == makecol(183,9,250)) {
+            Taupe();
+            map_x = PLAYER_START_X * ZOOM_FACTOR;
+            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+        } else if (color_under_player == makecol(250,239,0)) {
+            lejeu();
+            map_x = PLAYER_START_X * ZOOM_FACTOR;
+            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+        } else if (color_under_player == makecol(129,255,9)) {
+            Gh();
+            map_x = PLAYER_START_X * ZOOM_FACTOR;
+            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+        } else if (color_under_player == makecol(4,94,255)) {
+            PPC();
+            map_x = PLAYER_START_X * ZOOM_FACTOR;
+            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+        } else if (color_under_player == makecol(255,0,0)) {
+            Bomberman();
+            map_x = PLAYER_START_X * ZOOM_FACTOR;
+            map_y = PLAYER_START_Y * ZOOM_FACTOR;
         }
 
+        stretch_blit(map, buffer, map_x / ZOOM_FACTOR, map_y / ZOOM_FACTOR, SCREEN_W / ZOOM_FACTOR, SCREEN_H / ZOOM_FACTOR, 0, 0, SCREEN_W, SCREEN_H);
+        draw_sprite(buffer, player[player_dir][player_frame], player_x, player_y);
+        blit(buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+        printf("\n%d",out);
 
-        blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_W);
         rest(10);
     }
-    free(perso);
-    destroy_bitmap(map);
-    destroy_bitmap(page);
-}
-void initialisation_perso(t_perso *perso){
-    perso->tx=16;
-    perso->ty=21;
-    perso->x=1920/2 + perso->tx;
-    perso->y=1080/2 + perso->ty;
-    perso->dx=0;
-    perso->dy=0;
-}
 
-void collision(BITMAP *page,t_perso *perso,t_map *map,int *u,int *d, int *r,int *l){
-    for(int i=0;i<20;i++){
-        if(getpixel(map->collision,map->x-perso->x,perso->y));
-        if(key[KEY_UP]){
-            *u+=*u+1;
-            *u%=3;
-            map->dy=5;
-            map->y-=map->dy;
-        }
-        if(key[KEY_DOWN]){
-            *d+=*d+1;
-            *d%=3;
-            map->dy=5;
-            map->y+=map->dy;
-        }
-        if(key[KEY_RIGHT]){
-            *r+=*r+1;
-            *r%=3;
-            map->dx=5;
-            map->x+=map->dx;
-        }
-        if(key[KEY_LEFT]){
-            *l+=*l+1;
-            *l%=3;
-            map->dx=5;
-            map->x-=map->dx;
-        }
+    // Don't forget to destroy bitmaps after you're done
+    for (int i = 0; i < PLAYER_ANIM_COUNT; i++) {
+        destroy_bitmap(player[0][i]);
+        destroy_bitmap(player[1][i]);
+        destroy_bitmap(player[2][i]);
+        destroy_bitmap(player[3][i]);
     }
 
-
-
-
+    destroy_bitmap(map);
+    destroy_bitmap(buffer);
 
 }
