@@ -28,12 +28,6 @@ _footer: Algorithmique Avancée et Bibliothèque Graphique - 2022-2023
 
 Equipe 47
 
----
-
-# Equipe 47
-
-![bg right:50%](./images/)
-
 - Raphaël DUPORT
 - Apolline JACQUIER
 - Thibaut PUEL
@@ -61,25 +55,26 @@ Nous avons choisis le thème Nintendo afin d'avoir assez de sprites.
 # Organisation des jeux
 
 
--Les jeux sont dans des fichiers séparés. 
--Chaque jeu a son fichier et son header. L'accès aux jeux s'effectue par la map.
--(Chaque jeu devait prendre en paramètre le joueur pour les stats et les tickets.)
-Les bâtiments ont une couleur associée: on entre dans un bâtiment lorsque la couleur est détectée (collision).
+- Les jeux sont dans des fichiers séparés. 
+- Chaque jeu a son fichier et son header. L'accès aux jeux s'effectue par la map.
+- (Chaque jeu devait prendre en paramètre le joueur pour les stats et les tickets.)
+Les bâtiments ont une couleur associée: on entre dans un bâtiment lorsque la couleur sur la BITMAP collision est détectée.
 
 
 ---
 
-![bg right:40%](images/gh.png)
+![bg right:50%](images/gh.png)
 
 # Guitar Hero
 
 *Réalisé par : **Raphaël***
 
-- Des étoiles tombent, 
+- Appuyer sur les boutons en même temps que la mélodie
+- But Guitare Hero : Marquer le plus haut score possible
 
 ---
 
-![bg right:40%](images/gh.png)
+![bg right:50%](images/gh.png)
 
 # Guitar Hero
 
@@ -100,7 +95,7 @@ Les bâtiments ont une couleur associée: on entre dans un bâtiment lorsque la 
 
 ---
 
-![bg right:70% 98%](images/logibomberman.png)
+![bg right:70% 70%](images/logigh.png)
 
 # Guitar Hero
 
@@ -144,6 +139,15 @@ Cependant il doit s'éloigner de la bombe avant qu'elle explose, du feu, sinon i
 
 ---
 
+![bg right:60% 100%](images/logibomberman.png)
+
+# Bomberman
+
+### Logigramme
+
+
+---
+
 ![bg right:40%](images/riv.png)
 
 # Traversée de rivière
@@ -164,13 +168,13 @@ Le but du jeu est comme son nom l'indique de traverser la rivière en sautant su
 # Traversée de rivière
 
 
-### Structures
+### Structure
 
-![w:200 h:400](images/structriv.png)
+![w:150 h:350](images/structriv.png)
 
 ---
 
-![bg right:60% 90%](images/appelriv.PNG)
+![bg right:70% 90%](images/appelriv.PNG)
 
 # Traversée de rivière
 
@@ -186,7 +190,7 @@ Le but du jeu est comme son nom l'indique de traverser la rivière en sautant su
 
 ---
 
-![bg right:40%](images/taupe.png)
+![bg right:50%](images/taupe.png)
 
 # Taupes
 
@@ -208,7 +212,7 @@ Le but du jeu est comme son nom l'indique de traverser la rivière en sautant su
 
 ---
 
-![bg right:70% 95%](images/taupes.png)
+![bg right:70% 100%](images/taupes.png)
 
 # Taupes
 
@@ -228,19 +232,6 @@ Il choisi son coup avant de découvrir ce que le hasard à choisi pour l'ordinat
 
 ---
 
-![bg right:40%](images/pierre.png)
-
-# Pierre Feuille Ciseaux
-
-
-### Structures
-
-PAS DE STRUCTURES ??
-
-
-
----
-
 ![bg right:60% 80%](images/appelpfc.PNG)
 
 # Pierre Feuille Ciseaux
@@ -251,7 +242,7 @@ PAS DE STRUCTURES ??
 
 ---
 
-![bg right:70% 95%](images/Pfc.png)
+![bg right:70% 100%](images/Pfc.png)
 
 # Pierre Feuille Ciseaux
 
@@ -260,19 +251,19 @@ PAS DE STRUCTURES ??
 
 ---
 
-![bg right:45%](images/captureballons2.png)
+![bg right:50%](images/captureballons2.png)
 
 # Tir aux ballons
 
 *Réalisé par : **Laure***
 
-- Les déplacements des ballons sont aléatoire.
+- But : Faire éclater tous les ballons le plus rapidement possible
+- Les déplacements des ballons sont aléatoires.
 - La collision avec le clic de la souris est détectée.
-
 
 ---
 
-![bg right:40%](images/captureballons2.png)
+![bg right:50%](images/captureballons2.png)
 
 # Tir aux ballons
 
@@ -317,18 +308,18 @@ _class: lead
 - `✅ 100%` Jeu : Guitar Hero
 - `✅ 100%` Jeu : Bomberman
 
-- `❌ 50%` Déplacement de la map
-    - *Développer ici pourquoi cette tâche n'a pas été terminée.*
+- `❌ 100%` Déplacement de la map
+    - Problème suite à un "Update" -> programme perdu
 ---
 
 # Apolline
 
 ## Tâches réalisées 
 
-- `✅ 50%` Jeu : Traversée de rivière
-- *Probème avec le déplacement du personnage*
-- `✅ 80%` Conception de la map
-    - *Développer ici pourquoi cette tâche n'est pas terminée à 100%. (exemple : on aurait pu améliorer...).*
+- `50%` Jeu : Traversée de rivière
+    - Problème avec le déplacement du personnage
+- `✅ 100%` Conception de la map
+   
 
 ---
 
@@ -338,7 +329,7 @@ _class: lead
 
 - `✅ 100%` Jeu : Taupe
 
-- `✅ 95%` Jeu : Pierre feuille ciseau
+- `✅ 90%` Jeu : Pierre feuille ciseau
 
 
 ---
@@ -347,7 +338,7 @@ _class: lead
 
 ## Tâches réalisées 
 
-- `❌ 50%` Jeu : Tir aux ballons
+- `50%` Jeu : Tir aux ballons
 - `✅ 100%` Diapo Marp
 
 ---
@@ -355,17 +346,28 @@ _class: lead
 # Investissement
 ![auto ](images/repartition.png)
 
+--- 
+
+# Git
+![w:900 h:570 ](images/git.png)
+
+
 ---
 # Récapitulatif des jeux
 
-| Jeu | Avancement | Problèmes / reste |
+| Jeux | Avancement | Problèmes / reste |
 | --- | --- | --- |
 | Guitar Hero | 100% | - |
 | Bomberman | 100% | - |
 | Taupes | 100% ||
-| Pierre feuille ciseaux | 95% | Récursivité pour relancer une partie + afficher l'écran de fin |
-| Tir aux ballons | 50% | Problème avec le tableau de ballons -> impact sur tout le reste du programme|
-| Traversée de rivière | 50% | Problème d'affichage du personnage |
+| Pierre feuille ciseaux | 90% | Récursivité pour relancer une partie + afficher l'écran de fin |
 
+---
+# Récapitulatif des jeux
+
+| Jeux | Avancement | Problèmes / reste |
+| --- | --- | --- |
+| Tir aux ballons | 50% | Problème avec le tableau de ballons -> impact sur tout le reste du programme|
+| Traversée de rivière | 50% | Problème d'affichage du personnage + mouvements |
 
 ---
