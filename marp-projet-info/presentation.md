@@ -69,7 +69,7 @@ Comment le classement est-il mis à jour ?
 
 ---
 
-![bg right:40%](images/)
+![bg right:40%](images/gh.png)
 
 # Guitar Hero
 
@@ -86,7 +86,7 @@ Décrire le fonctionnement du jeu dans les grandes lignes. Comment vous l'avez c
 
 ---
 
-![bg right:40%](images/)
+![bg right:40%](images/gh.png)
 
 # Guitar Hero
 
@@ -121,24 +121,13 @@ classDiagram
 
 ---
 
-![bg right:40%](images/)
+![bg right:60% 90%](images/appelgh.PNG)
 
 # Guitar Hero
 
 ### Graphe d'appel
 
-<br>
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-flowchart LR
-    Gh --> initBoutons
-    Gh --> initScore
-    Gh --> Menu
-    Gh --> guitareHero
-    guitareHero --> detectScore
-    guitareHero --> animationBoutons
-</div>
 
 
 ---
@@ -173,72 +162,17 @@ Cependant il doit s'éloigner de la bombe avant qu'elle explose, du feu, sinon i
 
 ### Structures
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-classDiagram
-    class t_joueur
-    t_joueur : int x, y
 
-    t_joueur : int feu
-
-    t_joueur : int nb_bombes
-
-    t_joueur : int vie
-
-    t_joueur : BITMAP *front[ANIMATION]
-
-    t_joueur : BITMAP *back[ANIMATION]
-
-    t_joueur : BITMAP *side[ANIMATION]
-
-    class t_bombe
-
-    t_bombe : int x, y
-
-    t_bombe : int matrice[X][Y]
-
-    t_bombe : time_t creation_time
-
-    t_bombe : int explosion, explosion_now
-</div>
+![auto](images/structbomber.png)
 
 
 
 ---
-
+![bg right:50% 60%](images/appelbomber.PNG)
 
 # Bomberman
 
 ### Graphe d'appel
-
-<br>
-
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-flowchart LR
-    Bomberman --> init_matrice
-    Bomberman --> init_perso
-    Bomberman --> init_bombe
-    Bomberman --> affichage
-    Bomberman --> Meenu
-    Bomberman --> dplacement
-    dplacement --> affichage
-    Bomberman --> explosion
-    explosion --> affichage
-    explosion --> x_plus
-    explosion --> x_minus
-    explosion --> y_plus
-    explosion --> y_minus
-</div>
-
-
----
-
-![bg right:40%](images/)
-
-# Bomberman
-
-### Logigramme
 
 ---
 
@@ -366,11 +300,8 @@ classDiagram
 <div class="mermaid">
 %%{init: {'theme':'neutral'}}%%
 flowchart LR
-    pecheAuxCanards --> initialiserCanards
-    initialiserCanards --> positionnerCanard
-    pecheAuxCanards --> deplacerCanards
-    deplacerCanards --> deplacerCanard
-    pecheAuxCanards --> detecterCollisionCanards
+    Taupe --> game_jouer
+    Taupe --> regles_taupes
 </div>
 
 
@@ -411,16 +342,7 @@ Pour chaque jeu (bien détailler au moins un jeu par personne), précisez les st
 
 ### Structures
 
-<div class="mermaid">
-%%{init: {'theme':'neutral'}}%%
-classDiagram
-    class Canard
-    Canard : int x, y
-    Canard : int vitesse
-    class Canne
-    Canne : int x, y
-    Canne : Canard* canard
-</div>
+PAS DE STRUCTURES ??
 
 
 
@@ -437,11 +359,8 @@ classDiagram
 <div class="mermaid">
 %%{init: {'theme':'neutral'}}%%
 flowchart LR
-    pecheAuxCanards --> initialiserCanards
-    initialiserCanards --> positionnerCanard
-    pecheAuxCanards --> deplacerCanards
-    deplacerCanards --> deplacerCanard
-    pecheAuxCanards --> detecterCollisionCanards
+    PPC --> jouer
+    PPC --> regles
 </div>
 
 
@@ -462,10 +381,8 @@ flowchart LR
 
 *Réalisé par : **Laure***
 
-- Les déplacements sont aléatoire.
-- Les canards vont à une vitesse différente (tirée aléatoirement).
+- Les déplacements des ballons sont aléatoire.
 - La collision avec le clic de la souris est détectée.
-- etc.
 
 
 ---
