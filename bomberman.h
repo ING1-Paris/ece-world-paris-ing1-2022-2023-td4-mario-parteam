@@ -40,7 +40,7 @@ void y_minus(t_bombe bombe[],int matrice[X][Y],t_joueur perso[],int i,int p,BITM
 void explosion(t_joueur perso[],t_bombe bombej1[],t_bombe bombej2[],int matrice[X][Y],int *nbbombe1,int *nbbombe2,BITMAP *page,BITMAP *Object[NBOBJECTS],BITMAP *stage,int u1,int d1,int r1,int l1,int u2,int d2,int r2,int l2,bool touchePressed1, bool touchePressed2,int *toucheIsPress1,int *toucheIsPress2,BITMAP *mortj1,BITMAP *mortj2);
 void dplacement(int matrice[X][Y],t_joueur perso[],int *animation,bool touchePressed1[5], bool touchePressed2[5],int toucheIsPress1[5],int toucheIsPress2[5],BITMAP *page,BITMAP *Object[NBOBJECTS],BITMAP *stage,int *u1,int *d1,int *r1,int *l1,int *u2,int *d2,int *r2,int *l2,BITMAP *mortj1,BITMAP *mortj2);
 void affichage(int matrice[X][Y],t_joueur perso[],BITMAP *objects[NBOBJECTS],BITMAP *page,BITMAP *stage,BITMAP *mortj1,BITMAP *mortj2,int u1,int d1,int r1,int l1,int u2,int d2,int r2,int l2);
-int Meenu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2);
+int Meenu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2,SAMPLE *MenuSound);
 
 void Bomberman();
 #endif //MARIO_PARTEAM_V1_BOMBERMAN_H

@@ -139,12 +139,12 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
     background = load_bitmap("images/Fond_Kirby.bmp",NULL);
     KirbySing = load_bitmap("images/Kirby_OwO.bmp",NULL);
 
-    while(!key[KEY_ESC]){
+    while(getpixel(screen,XSTAGE+10,550)!=makecol(255,0,0)){
         clear(page);
         draw_sprite(page,KirbySing,1490,820);
         blit(background,page,0,0,0,0,SCREEN_W,SCREEN_H);
         if(getpixel(screen,XSTAGE+10,550)==makecol(255,255,255))
-            play_sample(Kirby,255,0,1000,1);
+            play_sample(Kirby,255,122,930,1);
         //Rajouter un 3,2,1;
         ystage-=10;
 
@@ -165,7 +165,7 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
         textprintf_ex(page,font,score->xcombo,130,score->color,-1,"Bouton bleu : SpaceBar");
         textprintf_ex(page,font,score->xcombo,140,score->color,-1,"Bouton orange : K");
 
-        textprintf_ex(page,font,score->xcombo,170,score->color,-1,"Pour avoir un ticket il faut un score de X minimum !");
+        textprintf_ex(page,font,score->xcombo,170,score->color,-1,"Pour avoir un ticket il faut un score de 30.000 minimum !");
 
 
 
@@ -178,7 +178,22 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
 
 
     }
-    destroy_sample(Kirby);
+    if(score->score>= 30000){
+        destroy_sample(Kirby);
+        clear_bitmap(page);
+        clear_bitmap(screen);
+        textprintf_ex(page,font,700,400, makecol(255,255,255),-1,"Vous avez %ld Points, c'est gagné !",score->score);
+        blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+        rest(10000);
+    }
+
+    if(score->score< 30000){
+        destroy_sample(Kirby);
+        clear_bitmap(screen);
+        textprintf_ex(page,font,700,400, makecol(255,255,255),-1,"Vous avez %ld Points, ce n'est pas assez... ",score->score);
+        blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+        rest(10000);
+    }
     destroy_bitmap(page);
     destroy_bitmap(buffer);
     destroy_bitmap(stage);
@@ -199,11 +214,11 @@ int Menu(BITMAP *page,BITMAP *fond,int *x1, int *x2, int *y1, int *y2){
 
         }
         if(*y1==400 && key[KEY_SPACE]){
-            return 2;
+        return 2;
         }
 
         if(*y1==50 && key[KEY_SPACE]){
-            return 1;
+        return 1;
         }
 
         blit(fond,page,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -259,6 +274,7 @@ void Gh(){
     destroy_bitmap(stage);
     destroy_bitmap(fond);
     destroy_bitmap(page);
+
 
 }
 

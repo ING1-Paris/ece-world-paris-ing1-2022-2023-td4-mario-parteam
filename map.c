@@ -46,31 +46,39 @@ void map() {
 
     while (!key[KEY_ESC]) {
         if (key[KEY_LEFT]) {
-            player_dir = 3;
+            player_dir = 2;
             if ((map_x > 0 && player_x == SCREEN_W / 3) || player_x > 0) {
-                if (map_x > 0) map_x -= 5 * ZOOM_FACTOR;
-                else player_x -= 5;
+                if (map_x > 0)
+                    map_x -= 5 * ZOOM_FACTOR;
+                else
+                    player_x -= 5;
             }
         }
         if (key[KEY_RIGHT]) {
-            player_dir = 2;
-            if ((map_x + SCREEN_W < MAP_W * ZOOM_FACTOR && player_x == SCREEN_W / 3) || player_x < SCREEN_W - PLAYER_W) {
-                if (map_x + SCREEN_W < MAP_W * ZOOM_FACTOR) map_x += 5 * ZOOM_FACTOR;
-                else player_x += 5;
+            player_dir = 3;
+            if ((map_x + SCREEN_W < MAP_W * ZOOM_FACTOR && player_x == SCREEN_W / 3)|| player_x < SCREEN_W - PLAYER_W) {
+                if (map_x + SCREEN_W < MAP_W * ZOOM_FACTOR)
+                    map_x += 5 * ZOOM_FACTOR;
+                else
+                    player_x += 5;
             }
         }
         if (key[KEY_UP]) {
             player_dir = 1;
             if ((map_y > 0 && player_y == SCREEN_H / 3) || player_y > 0) {
-                if (map_y > 0) map_y -= 5 * ZOOM_FACTOR;
-                else player_y -= 5;
+                if (map_y > 0)
+                    map_y -= 5 * ZOOM_FACTOR;
+                else
+                    player_y -= 5;
             }
         }
         if (key[KEY_DOWN]) {
             player_dir = 0;
             if ((map_y + SCREEN_H < MAP_H * ZOOM_FACTOR && player_y == SCREEN_H / 3) || player_y < SCREEN_H - PLAYER_H) {
-                if (map_y + SCREEN_H < MAP_H * ZOOM_FACTOR) map_y += 5 * ZOOM_FACTOR;
-                else player_y += 5;
+                if (map_y + SCREEN_H < MAP_H * ZOOM_FACTOR)
+                    map_y += 5 * ZOOM_FACTOR;
+                else
+                    player_y += 5;
             }
         }
 
@@ -78,7 +86,8 @@ void map() {
         if (player_frame_counter > 10) {
             player_frame_counter = 0;
             player_frame++;
-            if (player_frame >= PLAYER_ANIM_COUNT) player_frame = 0;
+            if (player_frame >= PLAYER_ANIM_COUNT)
+                player_frame = 0;
         }
 
         // get color under player
@@ -117,7 +126,6 @@ void map() {
         rest(10);
     }
 
-    // Don't forget to destroy bitmaps after you're done
     for (int i = 0; i < PLAYER_ANIM_COUNT; i++) {
         destroy_bitmap(player[0][i]);
         destroy_bitmap(player[1][i]);

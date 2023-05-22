@@ -2,7 +2,7 @@
 
 int main() {
     allegroinit();
-        map();
+    map();
 
     return 0;
 }
