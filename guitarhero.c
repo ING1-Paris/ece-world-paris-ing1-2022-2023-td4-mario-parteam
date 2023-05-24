@@ -189,8 +189,9 @@ void guitareHero(t_score *score, t_boutons *boutons, BITMAP *stage, BITMAP *page
 
     if(score->score< 30000){
         destroy_sample(Kirby);
+        clear_bitmap(page);
         clear_bitmap(screen);
-        textprintf_ex(page,font,700,400, makecol(255,255,255),-1,"Vous avez %ld Points, ce n'est pas assez... ",score->score);
+        textprintf_ex(page,font,700,400, makecol(255,255,255),-1,"Vous avez %ld Points, c'est gagné !",score->score);
         blit(page,screen,0,0,0,0,SCREEN_W,SCREEN_H);
         rest(10000);
     }

@@ -17,7 +17,7 @@ void dep_carte(BITMAP *page,BITMAP *decor,t_perso *perso,int screenx, int screen
 #define MAP_W 2248
 #define MAP_H 1277
 
-#define ZOOM_FACTOR 2
+#define ZOOM 2
 
 #define PLAYER_W 32
 #define PLAYER_H 32

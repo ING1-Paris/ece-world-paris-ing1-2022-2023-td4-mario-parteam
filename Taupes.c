@@ -12,6 +12,19 @@ void regles_taupes(BITMAP* regles_background){
     blit(regles_background, screen, 0, 0, 0,0, SCREEN_W,SCREEN_H);
 
 }
+void afficher_score_final(BITMAP* buffer, int score) {
+    clear_bitmap(buffer);
+    rectfill(buffer, 0, 0, SCREEN_W, SCREEN_H, makecol(0, 0, 0));
+    textprintf_centre_ex(buffer, font, SCREEN_W / 2, SCREEN_H / 2 - 20, makecol(255, 255, 255), -1, "Score final : %d", score);
+
+    if (score > 15) {
+        textprintf_centre_ex(buffer, font, SCREEN_W / 2, SCREEN_H / 2 + 20, makecol(255, 255, 255), -1, "Bravo ! Voici un ticket");
+    } else {
+        textprintf_centre_ex(buffer, font, SCREEN_W / 2, SCREEN_H / 2 + 20, makecol(255, 255, 255), -1, "C'est perdu...");
+    }
+
+    blit(buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+}
 
 BITMAP *load_bitmap_check(char *nomImage){
     BITMAP *bmp;
@@ -146,6 +159,8 @@ void Taupe(){
                 taupe_x = taupe_x_main;
                 elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
                 if (elapsed_time >= 60) {
+                    afficher_score_final(buffer, score);
+                    rest(5000);
                     break;}
 
                 game_jouer(jeu_background, taupes, buffer, &taupe_visible, &taupe_timer, &score,  taupe_width, taupe_height, taupe_delay, valeurs, division, &taupe_x_main,&taupe_y_main, taupe_rester ,elapsed_time);

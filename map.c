@@ -13,8 +13,8 @@ void map() {
     BITMAP *buffer;
     BITMAP *detect;
 
-    int map_x = PLAYER_START_X * ZOOM_FACTOR;
-    int map_y = PLAYER_START_Y * ZOOM_FACTOR;
+    int map_x = PLAYER_START_X * ZOOM;
+    int map_y = PLAYER_START_Y * ZOOM;
     int player_x = SCREEN_W / 3;
     int player_y = SCREEN_H / 3;
 
@@ -49,16 +49,16 @@ void map() {
             player_dir = 2;
             if ((map_x > 0 && player_x == SCREEN_W / 3) || player_x > 0) {
                 if (map_x > 0)
-                    map_x -= 5 * ZOOM_FACTOR;
+                    map_x -= 5 * ZOOM;
                 else
                     player_x -= 5;
             }
         }
         if (key[KEY_RIGHT]) {
             player_dir = 3;
-            if ((map_x + SCREEN_W < MAP_W * ZOOM_FACTOR && player_x == SCREEN_W / 3)|| player_x < SCREEN_W - PLAYER_W) {
-                if (map_x + SCREEN_W < MAP_W * ZOOM_FACTOR)
-                    map_x += 5 * ZOOM_FACTOR;
+            if ((map_x + SCREEN_W < MAP_W * ZOOM && player_x == SCREEN_W / 3)|| player_x < SCREEN_W - PLAYER_W) {
+                if (map_x + SCREEN_W < MAP_W * ZOOM)
+                    map_x += 5 * ZOOM;
                 else
                     player_x += 5;
             }
@@ -67,16 +67,16 @@ void map() {
             player_dir = 1;
             if ((map_y > 0 && player_y == SCREEN_H / 3) || player_y > 0) {
                 if (map_y > 0)
-                    map_y -= 5 * ZOOM_FACTOR;
+                    map_y -= 5 * ZOOM;
                 else
                     player_y -= 5;
             }
         }
         if (key[KEY_DOWN]) {
             player_dir = 0;
-            if ((map_y + SCREEN_H < MAP_H * ZOOM_FACTOR && player_y == SCREEN_H / 3) || player_y < SCREEN_H - PLAYER_H) {
-                if (map_y + SCREEN_H < MAP_H * ZOOM_FACTOR)
-                    map_y += 5 * ZOOM_FACTOR;
+            if ((map_y + SCREEN_H < MAP_H * ZOOM && player_y == SCREEN_H / 3) || player_y < SCREEN_H - PLAYER_H) {
+                if (map_y + SCREEN_H < MAP_H * ZOOM)
+                    map_y += 5 * ZOOM;
                 else
                     player_y += 5;
             }
@@ -91,34 +91,34 @@ void map() {
         }
 
         // get color under player
-        int color_under_player = getpixel(detect, (map_x + player_x) / ZOOM_FACTOR, (map_y + player_y) / ZOOM_FACTOR);
+        int color_under_player = getpixel(detect, (map_x + player_x) / ZOOM, (map_y + player_y) / ZOOM);
         if (color_under_player == makecol(64,6,45)) {
             tirballons();
-            map_x = PLAYER_START_X * ZOOM_FACTOR;
-            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+            map_x = PLAYER_START_X * ZOOM;
+            map_y = PLAYER_START_Y * ZOOM;
         } else if (color_under_player == makecol(183,9,250)) {
             Taupe();
-            map_x = PLAYER_START_X * ZOOM_FACTOR;
-            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+            map_x = PLAYER_START_X * ZOOM;
+            map_y = PLAYER_START_Y * ZOOM;
         } else if (color_under_player == makecol(250,239,0)) {
             lejeu();
-            map_x = PLAYER_START_X * ZOOM_FACTOR;
-            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+            map_x = PLAYER_START_X * ZOOM;
+            map_y = PLAYER_START_Y * ZOOM;
         } else if (color_under_player == makecol(129,255,9)) {
             Gh();
-            map_x = PLAYER_START_X * ZOOM_FACTOR;
-            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+            map_x = PLAYER_START_X * ZOOM;
+            map_y = PLAYER_START_Y * ZOOM;
         } else if (color_under_player == makecol(4,94,255)) {
             PPC();
-            map_x = PLAYER_START_X * ZOOM_FACTOR;
-            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+            map_x = PLAYER_START_X * ZOOM;
+            map_y = PLAYER_START_Y * ZOOM;
         } else if (color_under_player == makecol(255,0,0)) {
             Bomberman();
-            map_x = PLAYER_START_X * ZOOM_FACTOR;
-            map_y = PLAYER_START_Y * ZOOM_FACTOR;
+            map_x = PLAYER_START_X * ZOOM;
+            map_y = PLAYER_START_Y * ZOOM;
         }
 
-        stretch_blit(map, buffer, map_x / ZOOM_FACTOR, map_y / ZOOM_FACTOR, SCREEN_W / ZOOM_FACTOR, SCREEN_H / ZOOM_FACTOR, 0, 0, SCREEN_W, SCREEN_H);
+        stretch_blit(map, buffer, map_x / ZOOM, map_y / ZOOM, SCREEN_W / ZOOM, SCREEN_H / ZOOM, 0, 0, SCREEN_W, SCREEN_H);
         draw_sprite(buffer, player[player_dir][player_frame], player_x, player_y);
         blit(buffer, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
         printf("\n%d",out);
